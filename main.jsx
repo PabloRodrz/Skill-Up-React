@@ -5,7 +5,7 @@ import './index.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import store from './redux/store'
+import store from './features/store'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
