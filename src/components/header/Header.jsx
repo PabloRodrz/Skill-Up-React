@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 // Redux
-import { reset } from '../../slices/authSlice'
+import { reset, logout } from '../../slices/authSlice'
 
 // Styles
 import styled from './header.module.css'
@@ -11,6 +11,12 @@ import styled from './header.module.css'
 const Header = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/')
+  }
 
   return (
     <header className={styled.container}>
@@ -26,7 +32,9 @@ const Header = () => {
             <Link to='/register'>register</Link>
           </li>
           <li>
-            <Link to='/login'>logout</Link>
+            <Link to='/login' onClick={onLogout}>
+              logout
+            </Link>
           </li>
         </ul>
       </nav>
