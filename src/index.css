@@ -3,14 +3,19 @@
 :root {
   font-family: 'DM Sans', sans-serif;
   --main-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
-  --dark-mode-bg: hsl(207, 26%, 17%);
-  --dark-mode-el: (209, 23%, 22%);
-  --dark-mode-text: black;
+  --dark-mode-bg: hsla(0, 0%, 9%, 1);
+  --dark-mode-el: hsla(0, 0%, 5%, 1);
+  --dark-mode-text: white;
   --light-mode-bg: #F6F6F6;
   --light-mode-el: white;
-  --light-mode-text: white;
+  --light-mode-text: black;
   --light-blue: #58C1F5;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
