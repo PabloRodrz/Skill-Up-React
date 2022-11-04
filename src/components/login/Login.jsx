@@ -79,7 +79,6 @@ function Login() {
                   Email
                 </label>
               </div>
-
               <input
                 type='text'
                 id='email'

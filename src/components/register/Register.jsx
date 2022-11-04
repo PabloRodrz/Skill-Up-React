@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import Button from '../../components/Button/index'
+import './register.css'
 
 // Redux
 import { register, reset } from '../../slices/authSlice'
@@ -79,56 +81,63 @@ const Register = () => {
   return (
     <>
       <section>
-        <h1>Register</h1>
-        <p>Please create an account</p>
+        <h2>Sign up</h2>
       </section>
-      <section>
-        <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
+        <div className='form-inputs'>
           <div>
+            <div className='labels'>
+              <label>First name</label>
+            </div>
             <input
               type='text'
               id='first_name'
               name='first_name'
               value={first_name}
-              placeholder='Enter your name'
               onChange={onChange}
             />
           </div>
           <div>
+            <div className='labels'>
+              <label>Last name</label>
+            </div>
             <input
               type='text'
               id='last_name'
               name='last_name'
               value={last_name}
-              placeholder='Enter your last name'
               onChange={onChange}
             />
           </div>
           <div>
+            <div className='labels'>
+              <label>Email</label>
+            </div>
             <input
               type='string'
               id='email'
               name='email'
               value={email}
-              placeholder='Enter your email'
               onChange={onChange}
             />
           </div>
           <div>
+            <div className='labels'>
+              <label>Password</label>
+            </div>
             <input
               type='password'
               id='password'
               name='password'
               value={password}
-              placeholder='Enter password'
               onChange={onChange}
             />
           </div>
           <div>
-            <button type='submit'>Submit</button>
+            <Button text={"Sign up"} options={{uppercase: true}} />
           </div>
-        </form>
-      </section>
+        </div>
+      </form>
     </>
   )
 }
