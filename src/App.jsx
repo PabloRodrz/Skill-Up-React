@@ -9,11 +9,11 @@ import LoginPage from './pages/login/LoginPage'
 
 // Libraries
 import { Routes, Route } from 'react-router-dom'
-
+//header no va siempre. Agregar sidebar de manera condicional.
 function App() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route exact path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
