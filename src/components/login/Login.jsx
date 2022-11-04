@@ -108,7 +108,7 @@ function Login() {
             <Button text={"LOGIN"} options={{ uppercase: true }} />
           </div>
           <div className='login-footer'>
-            <span>New user? <Link className='signup-link' to={"/signup"}>Sign up</Link></span>
+            <span>New user? <Link className='signup-link' to={"/signup"}> <b>Sign up</b></Link></span>
           </div>
         </form>
       </section>

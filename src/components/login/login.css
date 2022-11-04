@@ -35,3 +35,7 @@ input{
   text-decoration: none;
   color: var(--light-mode-text);
 }
+
+span{
+  font-size: 14px;
+}
