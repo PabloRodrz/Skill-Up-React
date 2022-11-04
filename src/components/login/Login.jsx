@@ -1,9 +1,10 @@
 // Libraries
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-
+import './login.css'
+import Button from '../Button/index'
 // Redux
 import { login, reset } from '../../slices/authSlice'
 
@@ -68,36 +69,46 @@ function Login() {
 
   return (
     <>
-      <section>
-        <h1>Login</h1>
-        <p>Login and start setting goals</p>
-      </section>
-
+      <h2 className='login-title'>Login</h2>
       <section>
         <form onSubmit={onSubmit}>
-          <div>
-            <input
-              type='text'
-              id='email'
-              name='email'
-              value={email}
-              placeholder='Enter your email'
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={password}
-              placeholder='Enter password'
-              onChange={onChange}
-            />
+          <div className='form-inputs'>
+            <div>
+              <div className='labels'>
+                <label>
+                  Email
+                </label>
+              </div>
+
+              <input
+                type='text'
+                id='email'
+                name='email'
+                value={email}
+                onChange={onChange}
+              />
+            </div>
+            <div>
+              <div className='labels'>
+                <label>
+                  Password
+                </label>
+              </div>
+              <input
+                type='password'
+                id='password'
+                name='password'
+                value={password}
+                onChange={onChange}
+              />
+            </div>
           </div>
 
-          <div>
-            <button type='submit'>Submit</button>
+          <div className='login-btn'>
+            <Button text={"LOGIN"} options={{ uppercase: true }} />
+          </div>
+          <div className='login-footer'>
+            <span>New user? <Link className='signup-link' to={"/signup"}>Sign up</Link></span>
           </div>
         </form>
       </section>

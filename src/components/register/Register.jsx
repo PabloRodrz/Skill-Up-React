@@ -59,6 +59,7 @@ const Register = () => {
       roleId: 2,
       points: 0,
     }
+    console.log(userData)
     if (
       email === '' ||
       password === '' ||
