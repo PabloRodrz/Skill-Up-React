@@ -1,0 +1,8 @@
+.Title{
+    display: flex;
+    align-items: center;
+    height: 114px;
+    background: var(--light-mode-el);
+    margin: 0px;
+    padding-left: 34px;
+}
