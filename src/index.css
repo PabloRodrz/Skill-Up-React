@@ -35,6 +35,22 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
+<<<<<<< HEAD
+=======
+:root {
+  font-family: "DM Sans", sans-serif;
+  --main-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  --dark-mode-bg: hsla(0, 0%, 9%, 1);
+  --dark-mode-el: hsla(0, 0%, 5%, 1);
+  --dark-mode-text: white;
+  --light-mode-bg: #f6f6f6;
+  --light-mode-el: white;
+  --light-mode-text: black;
+  --light-blue: #58c1f5;
+
+}
+
+>>>>>>> develop
 #root {
   height: 100vh;
 }
