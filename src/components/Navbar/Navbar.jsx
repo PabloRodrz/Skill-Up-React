@@ -53,6 +53,7 @@ const Navbar = () => {
           <div className="userContainer">
             <span className="userNameContainer">Juan Perez</span>
             <span className="userEmailContainer">juanperez@example.com</span>
+            <span className='logOut'>Log out</span>
           </div>
         </div>
       </div>

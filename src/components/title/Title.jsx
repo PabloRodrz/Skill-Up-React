@@ -1,8 +1,8 @@
-import React from 'react'
+import './Title.css'
 
 const Title = ({ Size = "h1", text }) => {
   return (
-    <Size> { text } </Size>
+    <Size className="Title"> { text } </Size>
   )
 }
 

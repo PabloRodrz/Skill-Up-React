@@ -13,7 +13,7 @@
   --primary-btn-color-hover: #c6edfc;
   --secondary-btn-color: #161616;
   --secondary-btn-color-hover: #252525;
-    --dark-gray: #252525;
+  --dark-gray: #252525;
   --dark-blue: #374151;
   --card-dark-gray: #292929;
   --card-light-gray: #2c2c2c;
@@ -35,6 +35,8 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
+<<<<<<< HEAD
+=======
 :root {
   font-family: "DM Sans", sans-serif;
   --main-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
@@ -48,6 +50,7 @@ body {
 
 }
 
+>>>>>>> develop
 #root {
   height: 100vh;
 }
