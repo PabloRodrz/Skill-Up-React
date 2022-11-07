@@ -63,6 +63,10 @@
   fill: var(--light-blue);
 }
 
+.sections:hover svg > path {
+  fill: var(--light-blue);
+}
+
 /* PREFERENCE SECTION */
 
 .preferenceContainer {
@@ -90,12 +94,10 @@
 .userEmailContainer {
   font-size: 12px;
 }
-<<<<<<< HEAD
 
-.logOut{
+.logOut {
   font-size: 12px;
   font-weight: bold;
-  margin-top:12px;
+  margin-top: 12px;
+  cursor: pointer;
 }
-=======
->>>>>>> develop
