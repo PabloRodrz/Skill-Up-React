@@ -10,7 +10,7 @@ import './register.css'
 import { register, reset } from '../../slices/authSlice'
 
 const Register = () => {
-  const token = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem('token'))
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -38,7 +38,7 @@ const Register = () => {
       navigate('/login')
     }
     if (token?.accessToken) {
-      navigate('/login')
+      navigate('/')
     }
 
     dispatch(reset())
@@ -58,10 +58,9 @@ const Register = () => {
       last_name,
       email,
       password,
-      roleId: 2,
+      roleId: 1,
       points: 0,
     }
-    console.log(userData)
     if (
       email === '' ||
       password === '' ||
@@ -77,7 +76,6 @@ const Register = () => {
     }
     dispatch(register(userData))
   }
-
   return (
     <>
       <section>
@@ -134,7 +132,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <Button text={"Sign up"} options={{uppercase: true}} />
+            <Button text={'Sign up'} options={{ uppercase: true }} />
           </div>
         </div>
       </form>

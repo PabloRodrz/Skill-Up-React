@@ -6,10 +6,10 @@ import Swal from 'sweetalert2'
 import './login.css'
 import Button from '../Button/index'
 // Redux
-import { login, reset } from '../../slices/authSlice'
+import { login, reset, logedUser } from '../../slices/authSlice'
 
 function Login() {
-  const token = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem('token'))
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -32,6 +32,8 @@ function Login() {
     }
     if (isSuccess) {
       Swal.fire('Login successful')
+      dispatch(logedUser())
+      navigate('/')
     }
 
     if (token?.accessToken) {
@@ -75,9 +77,7 @@ function Login() {
           <div className='form-inputs'>
             <div>
               <div className='labels'>
-                <label>
-                  Email
-                </label>
+                <label>Email</label>
               </div>
               <input
                 type='text'
@@ -89,9 +89,7 @@ function Login() {
             </div>
             <div>
               <div className='labels'>
-                <label>
-                  Password
-                </label>
+                <label>Password</label>
               </div>
               <input
                 type='password'
@@ -104,10 +102,16 @@ function Login() {
           </div>
 
           <div className='login-btn'>
-            <Button text={"LOGIN"} options={{ uppercase: true }} />
+            <Button text={'LOGIN'} options={{ uppercase: true }} />
           </div>
           <div className='login-footer'>
-            <span>New user? <Link className='signup-link' to={"/signup"}> <b>Sign up</b></Link></span>
+            <span>
+              New user?{' '}
+              <Link className='signup-link' to={'/signup'}>
+                {' '}
+                <b>Sign up</b>
+              </Link>
+            </span>
           </div>
         </form>
       </section>
