@@ -63,10 +63,6 @@
   fill: var(--light-blue);
 }
 
-.sections:hover svg > path {
-  fill: var(--light-blue);
-}
-
 /* PREFERENCE SECTION */
 
 .preferenceContainer {
@@ -99,5 +95,4 @@
   font-size: 12px;
   font-weight: bold;
   margin-top: 12px;
-  cursor: pointer;
 }
