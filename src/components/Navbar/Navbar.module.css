@@ -23,7 +23,7 @@
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-top: 35px;
+  margin-top: 33px;
 }
 .logoTitle {
   font-weight: bold;
@@ -34,7 +34,7 @@
 /* MANAGE SECTION */
 
 .manageContainer {
-  margin-top: 60px;
+  margin-top: 30px;
   margin-left: 36px;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .sectionsContainer {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
 }
 
@@ -63,10 +63,14 @@
   fill: var(--light-blue);
 }
 
+.sections:hover svg > path {
+  fill: var(--light-blue);
+}
+
 /* PREFERENCE SECTION */
 
 .preferenceContainer {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: 36px;
 }
 
@@ -95,4 +99,5 @@
   font-size: 12px;
   font-weight: bold;
   margin-top: 12px;
+  cursor: pointer;
 }
