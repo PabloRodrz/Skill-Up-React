@@ -1,0 +1,98 @@
+/* GENERAL */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 100px);
+  justify-content: space-between;
+}
+
+.Navbar {
+  margin: 0px;
+  min-height: 100vh;
+  width: 283px;
+  color: var(--light-mode-el);
+  background-color: var(--dark-gray);
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOGO SECTION */
+
+.logoContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-top: 35px;
+}
+.logoTitle {
+  font-weight: bold;
+  font-size: 35px;
+  margin-left: 6.5px;
+}
+
+/* MANAGE SECTION */
+
+.manageContainer {
+  margin-top: 60px;
+  margin-left: 36px;
+}
+
+.manageContainer span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sectionsContainer {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.sections {
+  display: flex;
+  align-items: center;
+}
+
+.sections p {
+  margin-left: 24px;
+  cursor: pointer;
+}
+
+.hoverIcon:hover {
+  cursor: pointer;
+  fill: var(--light-blue);
+}
+
+/* PREFERENCE SECTION */
+
+.preferenceContainer {
+  margin-top: 40px;
+  margin-left: 36px;
+}
+
+.preferenceContainer span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* USER SECTION */
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0px 20px 36px;
+}
+
+.userNameContainer {
+  font-weight: bold;
+}
+
+.userEmailContainer {
+  font-size: 12px;
+}
+
+.logOut {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 12px;
+}
