@@ -1,0 +1,52 @@
+.errorPage {
+  height: 95vh;
+  background-color: var(--light-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background-color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 55rem;
+  height: 28rem;
+  box-shadow: var(--main-shadow);
+  flex-direction: column;
+}
+
+.textContainer {
+  margin-left: 124px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
+}
+
+.message {
+  font-size: 20px;
+  color: var(--icon-gray);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--light-mode-text);
+}
+.mr {
+  margin-right: 6px;
+}
+
+.linkText {
+  margin-top: 50px;
+  font-size: 15px;
+}
