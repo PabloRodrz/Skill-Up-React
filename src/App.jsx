@@ -6,6 +6,7 @@ import Footer from './components/footer/Footer'
 import HomePage from './pages/home/HomePage'
 import RegisterPage from './pages/register/RegisterPage'
 import LoginPage from './pages/login/LoginPage'
+import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage'
 
 // Libraries
 import { Routes, Route } from 'react-router-dom'
@@ -18,6 +19,7 @@ function App() {
         <Route exact path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path='/topUpMoney' element={<TopUpMoneyPage />} />
       </Routes>
       <Footer />
     </div>
