@@ -1,17 +1,30 @@
-import './button.css'
+import buttonStyles from './button.module.css'
 
 const ON_CLICK = function () { console.log('Botón accionado!') }
+const VARIANT = {
+  primary: buttonStyles.buttonPrimary,
+  secondary: buttonStyles.buttonSecondary
+}
 const OPTIONS = {
-  uppercase: [true, false]
+  uppercase: {
+    true: buttonStyles.buttonUppercase,
+    false: buttonStyles.buttonLowercase
+  }
 }
 
-function Button({ variant = 'primary', action = ON_CLICK, text = '', options = OPTIONS }) {
-  const UPPERCASE = options.uppercase === true ? 'button-uppercase' : 'button-lowercase'
-  const CLASS_NAME = `button${'-' + variant} ${options === OPTIONS ? '' : UPPERCASE}`.trim()
+function Button({ variant = VARIANT, action = ON_CLICK, text = '', options = OPTIONS }) {
+  const CLASSNAME = [
+    typeof variant === "object"
+      ? VARIANT['primary']
+      : VARIANT[variant],
+    Object.entries(options).map((el) => OPTIONS[el[0]][el[1]]).join(' ')
+  ]
+    .join(' ')
+    .trim()
 
   return (
     <button
-      className={CLASS_NAME}
+      className={CLASSNAME}
       onClick={typeof action !== 'function' ? ON_CLICK : action}
     >
       {text || 'Botón'}

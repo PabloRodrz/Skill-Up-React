@@ -1,5 +1,5 @@
-.button-primary,
-.button-secondary {
+.buttonPrimary,
+.buttonSecondary {
   color: var(--light-mode-el);
   text-transform: lowercase;
   font-weight: bold;
@@ -13,32 +13,32 @@
   -webkit-text-stroke: 0.3px transparent;
 }
 
-.button-primary::first-letter,
-.button-secondary::first-letter {
+.buttonPrimary::first-letter,
+.buttonSecondary::first-letter {
   text-transform: uppercase;
 }
 
-.button-primary:hover {
+.buttonPrimary:hover {
   background-color: var(--primary-btn-color-hover);
   -webkit-text-stroke: 0.3px #000;
 }
 
-.button-secondary:hover {
+.buttonSecondary:hover {
   background-color: var(--secondary-btn-color-hover);
 }
 
-.button-primary {
+.buttonPrimary {
   background-color: var(--primary-btn-color);
 }
 
-.button-secondary {
+.buttonSecondary {
   background-color: var(--secondary-btn-color);
 }
 
-.button-uppercase {
+.buttonUppercase {
   text-transform: uppercase;
 }
 
-.button-lowercase::first-letter {
+.buttonLowercase::first-letter {
   text-transform: lowercase;
 }
