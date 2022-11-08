@@ -1,7 +1,15 @@
 import styled from './topUpMoney.module.css'
 import { useState } from 'react'
 import topUpMoney from '../../services/topUpService'
+
 const TopUpMoney = () => {
+    //agarrar id de usuario de localstorage y pegar al get de accounts
+    //obtener id de la cuenta para hacer el post
+    //get accounts y filtrar por id
+    //pegar al endpoint accounts con type, concept y amount
+    //add redux for loading, success and error
+    //como chequear si está llegando la transacción
+    //layout
     const [addMoney, setAddMoney] = useState({
         amount: 0,
         concept: "",
@@ -16,9 +24,8 @@ const TopUpMoney = () => {
             let today = new Date()
             let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
             let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            let asd = new Date().toJSON();
-            topUpMoney({ amount: +addMoney.amount, concept: addMoney.concept, date: asd, type: "topup", accountId: 1, userId: 1, to_account_id: 1 })
-                .then(res => console.log(res, axios.get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users/1').then(res => console.log(res.data))))
+            topUpMoney({ amount: +addMoney.amount, concept: addMoney.concept, date: date + " " + time, type: "topup", accountId: 1, userId: 1, to_account_id: 1 })
+                .then(res => console.log(res))
                 .catch(e => console.log(e))
         }
     }
