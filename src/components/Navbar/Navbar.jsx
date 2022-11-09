@@ -1,13 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import AddMoneyIcon from "../../assets/icons/AddMoneyIcon";
 import DashboardIcon from "../../assets/icons/DashboardIcon";
 import Logo from "../../assets/icons/Logo";
+import LogOutIcon from "../../assets/icons/LogOutIcon";
 import NewExpense from "../../assets/icons/NewExpense";
 import NightModeIcon from "../../assets/icons/NightModeIcon";
 import SendMoney from "../../assets/icons/SendMoney";
 import TransactionsIcon from "../../assets/icons/TransactionsIcon";
+import { logout } from "../../slices/authSlice";
 import styled from "./Navbar.module.css";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const USER = useSelector(state => state.auth.user)
+
   return (
     <div className={styled.Navbar}>
       <div className={styled.logoContainer}>
@@ -51,11 +60,20 @@ const Navbar = () => {
             </div>
           </div>
           <div className={styled.userContainer}>
-            <span className={styled.userNameContainer}>Juan Perez</span>
-            <span className={styled.userEmailContainer}>
-              juanperez@example.com
-            </span>
-            <span className={styled.logOut}>Log out</span>
+            <div>
+              <span className={styled.userNameContainer}>{`${USER.first_name} ${USER.last_name}`}</span>
+              <span className={styled.userEmailContainer}>{USER.email}</span>
+            </div>
+            <button
+              className={styled.logOut}
+              onClick={() => {
+                dispatch(logout()),
+                  navigate('/'),
+                  Swal.fire('Logout successful')
+              }}
+            >
+              <LogOutIcon />
+            </button>
           </div>
         </div>
       </div>

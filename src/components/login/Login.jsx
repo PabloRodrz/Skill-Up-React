@@ -1,12 +1,12 @@
 // Libraries
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import styled from './Login.module.css'
 import Button from '../Button/index'
+import styled from './Login.module.css'
 // Redux
-import { login, reset, logedUser } from '../../slices/authSlice'
+import { logedUser, login, reset } from '../../slices/authSlice'
 
 function Login() {
   const token = JSON.parse(localStorage.getItem('token'))
@@ -33,15 +33,12 @@ function Login() {
     if (isSuccess) {
       Swal.fire('Login successful')
       dispatch(logedUser())
-      navigate('/')
-    }
 
-    if (token?.accessToken) {
-      navigate('/')
+      setTimeout(() => navigate('/'), 300);
     }
 
     dispatch(reset())
-  }, [isError, message, navigate, dispatch, token?.accessToken, isSuccess])
+  }, [token?.accessToken/* isSuccess, isError, message, navigate, dispatch, isSuccess */])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -50,33 +47,29 @@ function Login() {
     }))
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     if (email === '' || password === '') {
       Swal.fire('Invalid credentials')
       return
     }
+
     if (email !== '' && !regex.test(email)) {
       Swal.fire('Invalid mail or password')
       return
-    } else {
-      dispatch(
-        login({
-          email,
-          password,
-        })
-      )
     }
+
+    dispatch(login({ email, password, }))
   }
 
   return (
     <>
-      <h2 className={ styled.loginTitle }>Login</h2>
+      <h2 className={styled.loginTitle}>Login</h2>
       <section>
         <form onSubmit={onSubmit}>
-          <div className={ styled.formInputs }>
+          <div className={styled.formInputs}>
             <div>
-              <div className={ styled.labels }>
+              <div className={styled.labels}>
                 <label>Email</label>
               </div>
               <input
@@ -88,7 +81,7 @@ function Login() {
               />
             </div>
             <div>
-              <div className={ styled.labels }>
+              <div className={styled.labels}>
                 <label>Password</label>
               </div>
               <input
@@ -97,17 +90,18 @@ function Login() {
                 name='password'
                 value={password}
                 onChange={onChange}
+                autoComplete='true'
               />
             </div>
           </div>
 
-          <div className={ styled.loginBtn }>
+          <div className={styled.loginBtn}>
             <Button text={'LOGIN'} options={{ uppercase: true }} />
           </div>
-          <div className={ styled.loginFooter }>
+          <div className={styled.loginFooter}>
             <span>
               New user?{' '}
-              <Link className={ styled.signupLink } to={'/signup'}>
+              <Link className={styled.signupLink} to={'/signup'}>
                 {' '}
                 <b>Sign up</b>
               </Link>
