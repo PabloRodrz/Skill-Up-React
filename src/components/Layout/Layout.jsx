@@ -1,14 +1,14 @@
 import Navbar from "../Navbar/Navbar";
 import Title from "../title/Title"
-import "./Layout.css";
+import styled from './Layout/Layout.module.css'
 
 const Layout = ({page, children}) => {
   return (
-    <div className="Layout">
+    <div className={ styled.layout }>
       <Navbar />
-      <div className="pageContainer">
+      <div className={ styled.pageContainer }>
       <Title text={page}/>
-      <div className="cardsContainer">
+      <div className={ styled.cardsContainer}>
       {children}
       </div>
       </div>

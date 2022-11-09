@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Button from '../../components/Button/index'
-import './register.css'
+import styled from './Register.module.css'
 
 // Redux
 import { register, reset } from '../../slices/authSlice'
@@ -82,9 +82,9 @@ const Register = () => {
         <h2>Sign up</h2>
       </section>
       <form onSubmit={onSubmit}>
-        <div className='form-inputs'>
+        <div className={ styled.formInputs }>
           <div>
-            <div className='labels'>
+            <div className={ styled.labels }>
               <label>First name</label>
             </div>
             <input
@@ -96,7 +96,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className='labels'>
+            <div className={ styled.labels }>
               <label>Last name</label>
             </div>
             <input
@@ -108,7 +108,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className='labels'>
+            <div className={ styled.labels }>
               <label>Email</label>
             </div>
             <input
@@ -120,7 +120,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className='labels'>
+            <div className={ styled.labels }>
               <label>Password</label>
             </div>
             <input

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import './login.css'
+import styled from './Login.module.css'
 import Button from '../Button/index'
 // Redux
 import { login, reset, logedUser } from '../../slices/authSlice'
@@ -71,12 +71,12 @@ function Login() {
 
   return (
     <>
-      <h2 className='login-title'>Login</h2>
+      <h2 className={ styled.loginTitle }>Login</h2>
       <section>
         <form onSubmit={onSubmit}>
-          <div className='form-inputs'>
+          <div className={ styled.formInputs }>
             <div>
-              <div className='labels'>
+              <div className={ styled.labels }>
                 <label>Email</label>
               </div>
               <input
@@ -88,7 +88,7 @@ function Login() {
               />
             </div>
             <div>
-              <div className='labels'>
+              <div className={ styled.labels }>
                 <label>Password</label>
               </div>
               <input
@@ -101,13 +101,13 @@ function Login() {
             </div>
           </div>
 
-          <div className='login-btn'>
+          <div className={ styled.loginBtn }>
             <Button text={'LOGIN'} options={{ uppercase: true }} />
           </div>
-          <div className='login-footer'>
+          <div className={ styled.loginFooter }>
             <span>
               New user?{' '}
-              <Link className='signup-link' to={'/signup'}>
+              <Link className={ styled.signupLink } to={'/signup'}>
                 {' '}
                 <b>Sign up</b>
               </Link>
