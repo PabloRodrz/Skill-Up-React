@@ -1,6 +1,6 @@
 import buttonStyles from './button.module.css'
 
-const ON_CLICK = function () { console.log('Botón accionado!') }
+const ON_CLICK = function () { }
 const VARIANT = {
   primary: buttonStyles.buttonPrimary,
   secondary: buttonStyles.buttonSecondary
