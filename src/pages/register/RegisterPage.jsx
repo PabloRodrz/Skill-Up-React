@@ -1,15 +1,17 @@
 // Components
 import Register from '../../components/register/Register'
 import Welcome from '../../components/welcome/Welcome'
-import './registerpage.css'
+import styled from './RegisterPage.module.css'
+
+
 const RegisterPage = () => {
   return (
-    <div className='register-page-container'>
-      <div className='register-page-wrapper'>
-        <div className='welcome'>
+    <div className={ styled.registerPageContainer }>
+      <div className={ styled.registerPageWrapper }>
+        <div className={ styled.welcome }>
           <Welcome />
         </div>
-        <div>
+        <div className={ styled.contenedor }>
           <Register />
         </div>
       </div>
