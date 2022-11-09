@@ -10,6 +10,7 @@
   width: calc(100% - 283px);
 }
 
-.cardsContainer{
-  padding: 10px 34px;
+.cardsContainer {
+  height: 100%;
+  padding: 20px 34px;
 }
