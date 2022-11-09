@@ -45,6 +45,7 @@ const SendMoney = () => {
                   id='email'
                   name='email'
                   value={sendMoney.email}
+                  pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
                   onChange={handleChange}
                 />
               </div>
@@ -60,8 +61,8 @@ const SendMoney = () => {
                 >
                   <option value='default'>---Select one option---</option>
                   <option value='Others'>Others</option>
-                  <option value='Food'>Food</option>
-                  <option value='Clothes'>Clothes</option>
+                  <option value='Payment'>Payment</option>
+                  <option value='Transfer'>Transfer</option>
                 </select>
               </div>
               <div className={styled.inputDiv}>
@@ -72,6 +73,8 @@ const SendMoney = () => {
                   name='amount'
                   value={sendMoney.amount}
                   onChange={handleChange}
+                  min='1'
+                  pattern='[0-9]'
                 />
               </div>
             </div>
