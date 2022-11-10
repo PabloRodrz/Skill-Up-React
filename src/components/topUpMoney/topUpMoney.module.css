@@ -55,12 +55,12 @@
     background-color: var(--light-mode-bg);
 }
 
-h1 {
+.topUpTitle {
     position: absolute;
     margin-top: 2rem;
 }
 
-select {
+.topUpSelect {
     background-color: #F2F2F2;
     border: none;
     height: 1.8rem;
@@ -68,7 +68,7 @@ select {
     border: 1px solid black;
 }
 
-input {
+.inputTopup {
     background-color: #F2F2F2;
     border: none;
     height: 1.8rem;

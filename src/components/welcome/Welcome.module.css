@@ -3,8 +3,10 @@
 }
 
 h1 {
-  margin: 0;
   padding: 0;
+  position: relative;
+  margin-bottom: 0px;
+  margin-top: 0rem;
 }
 
 .logo {
@@ -18,7 +20,8 @@ h1 {
 }
 
 .welcomeTitleAlkybank {
-  font-size: 42px;
+  font-size: 40px;
+
 }
 
 .welcomeContainer {
