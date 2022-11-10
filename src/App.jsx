@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import SendMoney from './pages/send-money/SendMoney'
+import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage';
 
 // Libraries
 import { useSelector } from 'react-redux'
@@ -31,6 +32,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signup' element={<RegisterPage />} />
             <Route path='*' element={<Navigate to='/login' />} />
+            <Route path='/addmoney' element={TopUpMoneyPage} />
           </Routes>
       }
       <Footer />
