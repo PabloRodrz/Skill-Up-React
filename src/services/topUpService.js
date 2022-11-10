@@ -1,7 +1,7 @@
 import axios from 'axios';
-const topUpMoney = async (postData, id, token) => {
+const topUpMoney = async (postData, accountId, token) => {
   return await axios.post(
-    `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${id}`,
+    `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${accountId}`,
     postData,
     { headers: { Authorization: 'Bearer ' + token } }
   );
