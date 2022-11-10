@@ -31,12 +31,16 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message)
+      Swal.fire({ icon: 'error', text: message })
+      dispatch(reset())
+      return
     }
+
     if (isSuccess) {
       Swal.fire('User registered successful')
       navigate('/login')
     }
+
     if (token?.accessToken) {
       navigate('/')
     }
@@ -81,11 +85,11 @@ const Register = () => {
       <section>
         <h2>Sign up</h2>
       </section>
-      <form className={ styled.form } onSubmit={onSubmit}>
+      <form className={styled.form} onSubmit={onSubmit}>
         <div className={styled.formInputs}>
           <div>
             <div className={styled.labels}>
-              <label className={ styled.label }>First name</label>
+              <label className={styled.label}>First name</label>
             </div>
             <input
               type='text'
@@ -97,7 +101,7 @@ const Register = () => {
           </div>
           <div>
             <div className={styled.labels}>
-              <label className={ styled.label }>Last name</label>
+              <label className={styled.label}>Last name</label>
             </div>
             <input
               type='text'
@@ -109,7 +113,7 @@ const Register = () => {
           </div>
           <div>
             <div className={styled.labels}>
-              <label className={ styled.label }>Email</label>
+              <label className={styled.label}>Email</label>
             </div>
             <input
               type='string'
@@ -121,7 +125,7 @@ const Register = () => {
           </div>
           <div>
             <div className={styled.labels}>
-              <label className={ styled.label }>Password</label>
+              <label className={styled.label}>Password</label>
             </div>
             <input
               type='password'
@@ -134,6 +138,15 @@ const Register = () => {
           </div>
           <div>
             <Button text={'Sign up'} options={{ uppercase: true }} />
+          </div>
+          <div className={styled.signupFooter}>
+            <span>
+              Already registered?{' '}
+              <Link className={styled.loginLink} to={'/login'}>
+                {' '}
+                <b>Log in</b>
+              </Link>
+            </span>
           </div>
         </div>
       </form>
