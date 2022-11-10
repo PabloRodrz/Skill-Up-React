@@ -69,7 +69,7 @@ const Navbar = () => {
               onClick={() => {
                 dispatch(logout()),
                   navigate('/'),
-                  Swal.fire('Logout successful')
+                  Swal.fire('', 'Logout successful', 'success')
               }}
             >
               <LogOutIcon />
