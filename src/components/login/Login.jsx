@@ -26,7 +26,7 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire(`test ${message}`)
+      Swal.fire({ icon: 'error', text: message })
       dispatch(reset())
       return
     }

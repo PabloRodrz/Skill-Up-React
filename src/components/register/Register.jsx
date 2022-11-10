@@ -31,12 +31,16 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message)
+      Swal.fire({ icon: 'error', text: message })
+      dispatch(reset())
+      return
     }
+
     if (isSuccess) {
       Swal.fire('User registered successful')
       navigate('/login')
     }
+
     if (token?.accessToken) {
       navigate('/')
     }
@@ -81,19 +85,11 @@ const Register = () => {
       <section>
         <h2>Sign up</h2>
       </section>
-<<<<<<< HEAD
-      <form onSubmit={onSubmit}>
+      <form className={styled.form} onSubmit={onSubmit}>
         <div className={styled.formInputs}>
           <div>
             <div className={styled.labels}>
-              <label>First name</label>
-=======
-      <form className={ styled.form } onSubmit={onSubmit}>
-        <div className={styled.formInputs}>
-          <div>
-            <div className={styled.labels}>
-              <label className={ styled.label }>First name</label>
->>>>>>> develop
+              <label className={styled.label}>First name</label>
             </div>
             <input
               type='text'
@@ -105,11 +101,7 @@ const Register = () => {
           </div>
           <div>
             <div className={styled.labels}>
-<<<<<<< HEAD
-              <label>Last name</label>
-=======
-              <label className={ styled.label }>Last name</label>
->>>>>>> develop
+              <label className={styled.label}>Last name</label>
             </div>
             <input
               type='text'
@@ -121,11 +113,7 @@ const Register = () => {
           </div>
           <div>
             <div className={styled.labels}>
-<<<<<<< HEAD
-              <label>Email</label>
-=======
-              <label className={ styled.label }>Email</label>
->>>>>>> develop
+              <label className={styled.label}>Email</label>
             </div>
             <input
               type='string'
@@ -137,11 +125,7 @@ const Register = () => {
           </div>
           <div>
             <div className={styled.labels}>
-<<<<<<< HEAD
-              <label>Password</label>
-=======
-              <label className={ styled.label }>Password</label>
->>>>>>> develop
+              <label className={styled.label}>Password</label>
             </div>
             <input
               type='password'
