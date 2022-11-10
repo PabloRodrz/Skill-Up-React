@@ -28,11 +28,12 @@ function App() {
         />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<RegisterPage />} />
+        <Route path='/sendmoney' element={<SendMoney />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -11,5 +11,6 @@
 }
 
 .cardsContainer {
-  padding: 10px 34px;
+  height: 100%;
+  padding: 20px 34px;
 }

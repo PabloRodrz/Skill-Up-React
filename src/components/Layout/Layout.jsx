@@ -1,5 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import Title from "../title/Title";
+
 import styled from './Layout.module.css';
 
 const Layout = ({ page, children }) => {
