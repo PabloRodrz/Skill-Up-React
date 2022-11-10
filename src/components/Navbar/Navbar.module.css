@@ -8,13 +8,14 @@
 }
 
 .Navbar {
-  margin: 0px;
+  margin: 0;
   min-height: 100vh;
   width: 283px;
   color: var(--light-mode-el);
   background-color: var(--dark-gray);
   display: flex;
   flex-direction: column;
+  padding: 16px 32px;
 }
 
 /* LOGO SECTION */
@@ -25,6 +26,7 @@
   justify-content: center;
   margin-top: 33px;
 }
+
 .logoTitle {
   font-weight: bold;
   font-size: 35px;
@@ -63,7 +65,7 @@
   fill: var(--light-blue);
 }
 
-.sections:hover svg > path {
+.sections:hover svg>path {
   fill: var(--light-blue);
 }
 
@@ -83,8 +85,14 @@
 
 .userContainer {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.userContainer>div {
+  display: flex;
   flex-direction: column;
-  margin: 40px 0px 20px 36px;
 }
 
 .userNameContainer {
@@ -96,8 +104,14 @@
 }
 
 .logOut {
-  font-size: 12px;
-  font-weight: bold;
-  margin-top: 12px;
-  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.logOut>svg {
+  display: block;
+  height: 32px;
+  width: 32px;
+  color: #fff;
 }

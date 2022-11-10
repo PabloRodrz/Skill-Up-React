@@ -1,7 +1,7 @@
 // Libraries
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import Button from '../../components/Button/index'
 import styled from './Register.module.css'
@@ -82,9 +82,9 @@ const Register = () => {
         <h2>Sign up</h2>
       </section>
       <form onSubmit={onSubmit}>
-        <div className={ styled.formInputs }>
+        <div className={styled.formInputs}>
           <div>
-            <div className={ styled.labels }>
+            <div className={styled.labels}>
               <label>First name</label>
             </div>
             <input
@@ -96,7 +96,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className={ styled.labels }>
+            <div className={styled.labels}>
               <label>Last name</label>
             </div>
             <input
@@ -108,7 +108,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className={ styled.labels }>
+            <div className={styled.labels}>
               <label>Email</label>
             </div>
             <input
@@ -120,7 +120,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <div className={ styled.labels }>
+            <div className={styled.labels}>
               <label>Password</label>
             </div>
             <input
@@ -129,10 +129,20 @@ const Register = () => {
               name='password'
               value={password}
               onChange={onChange}
+              autoComplete='true'
             />
           </div>
           <div>
             <Button text={'Sign up'} options={{ uppercase: true }} />
+          </div>
+          <div className={styled.signupFooter}>
+            <span>
+              Already registered?{' '}
+              <Link className={styled.loginLink} to={'/login'}>
+                {' '}
+                <b>Log in</b>
+              </Link>
+            </span>
           </div>
         </div>
       </form>
