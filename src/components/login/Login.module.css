@@ -11,6 +11,14 @@ h2 {
   margin-bottom: 3px;
 }
 
+.label {
+  font-size: 15px;
+}
+
+.form {
+  width: 120%;
+}
+
 input {
   background-color: #F2F2F2;
   border: none;

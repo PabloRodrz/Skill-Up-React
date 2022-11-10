@@ -1,11 +1,12 @@
 // Components
+import Error404 from './components/error404/Error404'
 import Footer from './components/footer/Footer'
 
 // Pages
-import Error404 from './components/error404/Error404'
 import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
+import SendMoney from './pages/send-money/SendMoney'
 
 // Libraries
 import { useSelector } from 'react-redux'
