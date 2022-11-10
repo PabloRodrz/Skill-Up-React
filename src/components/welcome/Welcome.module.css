@@ -11,21 +11,36 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-.welcome-title {
+.welcomeTitle {
   font-weight: 500;
 }
 
-.welcome-title-alkybank {
+.welcomeTitleAlkybank {
   font-size: 42px;
 }
 
-.welcome-container {
+.welcomeContainer {
   height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.welcome-span{
+.welcomeSpan{
   margin-top: 2rem;
 }
+
+
+@media (max-width: 500px) {
+  .welcomeContainer {
+    height: 120px;
+    margin-top: 70px;
+  }
+  
+  .welcomeSpan {
+    margin: 0;
+    text-align: center;
+  }
+
+}
+

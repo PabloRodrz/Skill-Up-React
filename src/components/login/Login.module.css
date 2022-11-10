@@ -3,7 +3,7 @@ h2 {
   font-weight: 500;
 }
 
-.login-btn {
+.loginBtn {
   margin-top: 1.5rem;
 }
 
@@ -18,7 +18,7 @@ input {
   width: 12rem;
 }
 
-.form-inputs {
+.formInputs {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -26,12 +26,12 @@ input {
   gap: 1rem;
 }
 
-.login-footer {
+.loginFooter {
   margin-top: 1rem;
   text-align: center;
 }
 
-.signup-link {
+.signupLink {
   text-decoration: none;
   color: var(--light-mode-text);
 }

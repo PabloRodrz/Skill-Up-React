@@ -8,7 +8,7 @@ const TopUpMoney = () => {
     //get accounts y filtrar por id
     //pegar al endpoint accounts con type, concept y amount
     //add redux for loading, success and error
-    //como chequear si está llegando la transacción
+    //como chequear si está llegando la transaccióngit
     //layout
     const [addMoney, setAddMoney] = useState({
         amount: 0,

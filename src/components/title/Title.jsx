@@ -1,8 +1,8 @@
-import './Title.css'
+import styled from './Title.module.css'
 
 const Title = ({ Size = "h1", text }) => {
   return (
-    <Size className="Title"> { text } </Size>
+    <Size className={ styled.title }> { text } </Size>
   )
 }
 

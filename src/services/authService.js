@@ -38,6 +38,7 @@ const getLogedUser = async () => {
     'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me',
     config
   )
+
   if (res.data) {
     localStorage.setItem('user', JSON.stringify(res.data))
   }

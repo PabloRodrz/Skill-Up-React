@@ -1,16 +1,17 @@
 // Components
 import Login from '../../components/login/Login'
 import Welcome from '../../components/welcome/Welcome'
-import './loginpage.css'
+import styled from './LoginPage.module.css'
+
 
 const LoginPage = () => {
   return (
-    <div className='login-page-container'>
-      <div className='login-page-wrapper'>
-        <div className='welcome'>
+    <div className={ styled.loginPageContainer }>
+      <div className={ styled.loginPageWrapper }>
+        <div className={ styled.welcome }>
           <Welcome />
         </div>
-        <div>
+        <div className={ styled.contenedor }>
           <Login />
         </div>
       </div>

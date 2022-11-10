@@ -1,4 +1,4 @@
-.form-inputs {
+.formInputs {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,17 @@ input {
   width: 12rem;
 }
 
-h2{
+h2 {
   text-align: center;
   font-weight: 500;
+}
+
+.signupFooter {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.loginLink {
+  text-decoration: none;
+  color: var(--light-mode-text);
 }
