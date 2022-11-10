@@ -1,4 +1,4 @@
-import styled from './topUpMoney.module.css'
+import styled from './TopUpMoney.module.css'
 import { useEffect, useState } from 'react'
 import { getAccountId } from '../../services/topUpService'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,7 +42,7 @@ const TopUpMoney = () => {
         <>
             {isLoading ? <h1>loading..</h1> : <>
                 <div className={styled.title}>
-                    <h1>Top up money</h1>
+                    <h1 className={ styled.topUpTitle }>Top up money</h1>
                 </div>
                 <div className={styled.container}>
                     <div className={styled.wrapper}>
@@ -56,11 +56,11 @@ const TopUpMoney = () => {
                             </div>
                             <div className={styled.inputDiv}>
                                 <label>Amount</label>
-                                <input required name="amount" type="number" pattern='[0-9]+' onChange={handleOnChange} />
+                                <input className={ styled.inputTopup } required name="amount" type="number" pattern='[0-9]+' onChange={handleOnChange} />
                             </div>
                             <div className={styled.inputDiv}>
                                 <label>Currency</label>
-                                <input required name="currency" type="text" onChange={handleOnChange} />
+                                <input className={ styled.inputTopup } required name="currency" type="text" onChange={handleOnChange} />
                             </div>
 
                             <div style={{ width: '12rem' }}>
