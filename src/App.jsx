@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import SendMoney from './pages/send-money/SendMoney'
+import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage';
 
 
 // Libraries
@@ -30,6 +31,7 @@ function App() {
         />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<RegisterPage />} />
+        <Route path="/addmoney" element={<TopUpMoneyPage />} />;
         <Route path='/sendmoney' element={<SendMoney />} />
         <Route path='*' element={<Error404 />} />
       </Routes>

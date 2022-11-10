@@ -1,31 +1,38 @@
 import styled from './topUpMoney.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import topUpMoney from '../../services/topUpService'
+import { getAccountId } from '../../services/topUpService'
 
 const TopUpMoney = () => {
-    //agarrar id de usuario de localstorage y pegar al get de accounts
-    //obtener id de la cuenta para hacer el post
-    //get accounts y filtrar por id
-    //pegar al endpoint accounts con type, concept y amount
     //add redux for loading, success and error
-    //como chequear si está llegando la transaccióngit
     //layout
+
+    const user = JSON.parse(localStorage.getItem("user"))
+    const id = user?.id
+    const token = JSON.parse(localStorage.getItem("token"))
+    const [accountId, setAccountId] = useState(0)
+    const { accessToken } = token
+    useEffect(() => {
+        getAccountId(accessToken).then(res => {
+            setAccountId(res.data[0].id)
+            console.log(res.data)
+        })
+
+    }, [])
     const [addMoney, setAddMoney] = useState({
         amount: 0,
         concept: "",
         currency: ""
     })
-
+    console.log(accountId)
     const handleOnChange = e => {
         setAddMoney(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
     const handleOnClick = e => {
         if (addMoney.amount > 0 && addMoney.concept !== "" && addMoney.currency !== "") {
-            let today = new Date()
-            let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
-            let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            topUpMoney({ amount: +addMoney.amount, concept: addMoney.concept, date: date + " " + time, type: "topup", accountId: 1, userId: 1, to_account_id: 1 })
-                .then(res => console.log(res))
+
+            topUpMoney({ amount: +addMoney.amount, concept: addMoney.concept, type: "topup" }, accountId, accessToken)
+                .then(res => console.log(res.data))
                 .catch(e => console.log(e))
         }
     }
@@ -59,9 +66,9 @@ const TopUpMoney = () => {
                     </div>
                 </div>
                 <div className={styled.userWrapper}>
-                    <span>Destinatario</span>
-                    <span>JuanCarlosPereasdsadsadsaz@gmail.com</span>
-                    <span>$2500</span>
+                    <span>{user?.first_name}  {user?.last_name}</span>
+                    <span>{user?.email}</span>
+                    <span>{addMoney.amount}</span>
                 </div>
             </div>
         </>
