@@ -1,3 +1,4 @@
+
 .formInputs {
   height: 100%;
   display: flex;
@@ -8,6 +9,14 @@
 
 .labels {
   margin-bottom: 3px;
+}
+
+.label {
+  font-size: 15px;
+}
+
+.form {
+  width: 120%;
 }
 
 input {
@@ -22,10 +31,6 @@ h2 {
   font-weight: 500;
 }
 
-.signupFooter {
-  margin-top: 1rem;
-  text-align: center;
-}
 
 .loginLink {
   text-decoration: none;
