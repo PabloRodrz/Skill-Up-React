@@ -10,6 +10,14 @@
   margin-bottom: 3px;
 }
 
+.label {
+  font-size: 15px;
+}
+
+.form {
+  width: 120%;
+}
+
 input {
   background-color: #F2F2F2;
   border: none;
@@ -22,10 +30,6 @@ h2 {
   font-weight: 500;
 }
 
-.signupFooter {
-  margin-top: 1rem;
-  text-align: center;
-}
 
 .loginLink {
   text-decoration: none;

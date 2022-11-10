@@ -26,7 +26,7 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire(`test ${message}`)
+      Swal.fire({ icon: 'error', text: message })
       dispatch(reset())
       return
     }
@@ -47,7 +47,7 @@ function Login() {
     }))
   }
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
     if (email === '' || password === '') {
       Swal.fire('Invalid credentials')
@@ -66,11 +66,11 @@ function Login() {
     <>
       <h2 className={styled.loginTitle}>Login</h2>
       <section>
-        <form onSubmit={onSubmit}>
+        <form className={styled.form} onSubmit={onSubmit}>
           <div className={styled.formInputs}>
             <div>
               <div className={styled.labels}>
-                <label>Email</label>
+                <label className={styled.label}>Email</label>
               </div>
               <input
                 type='text'
@@ -82,7 +82,7 @@ function Login() {
             </div>
             <div>
               <div className={styled.labels}>
-                <label>Password</label>
+                <label className={styled.label}>Password</label>
               </div>
               <input
                 type='password'
