@@ -1,31 +1,31 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import createAccount from '../services/createAccount';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Swal from 'sweetalert2';
+import createAccount from '../services/createAccount';
 
 export const createAccountThunk = createAsyncThunk(
   'user/createAccountAPI',
   async (postData) => {
-    console.log("se ejecutó el thunk")
+
     return await createAccount(postData)
       .then((res) => {
         console.log(res)
       })
       .catch((e) => {
-        if (res.status === 401) {
+        if (e.status === 401) {
           Swal.fire(
             'Oops!',
             'You are unauthorized',
             'error'
           );
         }
-        if (res.status === 403) {
+        if (e.status === 403) {
           Swal.fire(
             'Oops!',
             'Forbiden access',
             'error'
           );
         }
-        if (res.status === 500) {
+        if (e.status === 500) {
           Swal.fire(
             'Oops!',
             'Internal server error. Try again later!',
@@ -62,6 +62,6 @@ export const createAccountSlice = createSlice({
   },
 });
 
-export const {  } = createAccountSlice.actions;
+export const { } = createAccountSlice.actions;
 
 export default createAccountSlice.reducer;

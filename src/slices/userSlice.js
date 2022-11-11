@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
-  user: {
-    id: 0,
-    createdAt: 0
-  }
+  userRegistered: {}
 };
 
 export const saveUserSlice = createSlice({
@@ -13,9 +9,7 @@ export const saveUserSlice = createSlice({
   initialState,
   reducers: {
     saveUserInfo(state, { payload }) {
-      console.log(payload)
-      state.id = payload.id
-      state.createdAt = payload.createdAt
+      state.userRegistered = payload
     }
   }
 });

@@ -7,7 +7,8 @@ import Button from '../../components/Button/index';
 import styled from './Register.module.css';
 
 // Redux
-import { register, reset } from '../../slices/authSlice';
+import { register } from '../../services/registerService';
+import { reset } from '../../slices/authSlice';
 
 const Register = () => {
   const token = JSON.parse(localStorage.getItem('token'));
@@ -78,8 +79,10 @@ const Register = () => {
       Swal.fire('Invalid mail');
       return;
     }
-    dispatch(register(userData));
+
+    register(userData);
   };
+
   return (
     <>
       <section>

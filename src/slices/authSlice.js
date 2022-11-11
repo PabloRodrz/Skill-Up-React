@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import authService from '../services/authService';
+/* import store from '../redux/store';
+ */ import authService from '../services/authService';
 
 // Get user data from local storage
 const userInfo = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
-  user: userInfo ? userInfo : null,
+  user: {}/* userInfo ? userInfo : null */,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -13,7 +14,7 @@ const initialState = {
 };
 
 // Register user
-export const register = createAsyncThunk(
+/* export const register = createAsyncThunk(
   'auth/register',
   async (user, thunkAPI) => {
     try {
@@ -23,16 +24,11 @@ export const register = createAsyncThunk(
       const { data } = response;
 
       const msg = data.error ?? message;
-      /* (error.response &&
-        error.response.data &&
-        error.response.data.message) ||
-      error.message ||
-      error.toString() */
       return thunkAPI.rejectWithValue(msg);
     }
   }
 );
-
+ */
 // Login user
 export const login = createAsyncThunk(
   'auth/login',
@@ -86,18 +82,19 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(register.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
+      /*       .addCase(register.pending, (state) => {
+              state.isLoading = true;
+            })
+            .addCase(register.fulfilled, (state, action) => {
+              state.isLoading = false;
+              state.isSuccess = true;
+              store.dispatch(saveUserInfo(res.data))
+            })
+            .addCase(register.rejected, (state, action) => {
+              state.isLoading = false;
+              state.isError = true;
+              state.message = action.payload;
+            }) */
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })

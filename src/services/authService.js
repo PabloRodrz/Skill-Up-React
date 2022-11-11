@@ -1,15 +1,4 @@
 import axios from 'axios'
-import store from '../redux/store'
-import { saveUserInfo } from '../slices/userSlice'
-// Register user
-const register = async (userData) => {
-  const res = await axios.post(
-    'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users',
-    userData
-  )
-  store.dispatch(saveUserInfo(res.data))
-  return res.data
-}
 
 // Login user
 const login = async ({ email, password }) => {
@@ -54,7 +43,6 @@ const logout = () => {
 }
 
 const authService = {
-  register,
   logout,
   login,
   getLogedUser,

@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { getAccountId } from '../../services/topUpService';
 import { createAccountThunk } from '../../slices/createAccountSlice';
-import Swal from 'sweetalert2';
 import Button from '../Button/index';
 import styled from './Login.module.css';
 // Redux
@@ -12,7 +12,7 @@ import { logedUser, login, reset } from '../../slices/authSlice';
 
 function Login() {
   const token = JSON.parse(localStorage.getItem('token'));
-  const user = useSelector(state => state.auth.user)
+  const userRegistered = useSelector(state => state.register.userRegistered)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,26 +33,15 @@ function Login() {
       dispatch(reset());
       return;
     }
-    if (token) {
-     
-    }
+
     if (isSuccess) {
       Swal.fire('', 'Login successful', 'success');
       dispatch(logedUser());
       getAccountId(token.accessToken).then(res => {
-        const {accessToken} = token
-        const {createdAt, userId} = user
-        //no está llegando el usuario y la validación no está funcionando.
-        //para seguir probando sacar el if
-        //hace falta el id y el createdAt para pegarle a createaccount
-        //el id y el createdAt los puedo sacar del register cuando le pega al /users y guardarlo en redux
-        //no entiendo como Francisco manejo ese try catch para obtener los datos y yo poder dispatchear
-        //el saveUserInfo
+        const { accessToken } = token
 
-        if (res.data === []) {
-          console.log("entró a res.data?")
-          console.log(res.data)
-          dispatch(createAccountThunk({createdAt, userId, accessToken}))
+        if (res.data.length === 0) {
+          dispatch(createAccountThunk({ ...userRegistered, token: accessToken }))
         }
       }
       ).catch(e => console.log(e))
