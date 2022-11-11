@@ -11,7 +11,8 @@ import styles from './dashboard.module.css';
 const Dashboard = () => {
   const USER = useSelector(state => state.auth.user)
   const { totalExpending, expenses, moneyTransferred } = useSelector(state => state.transactions)
-
+  const transactions = useSelector(state => state.transactions)
+  console.log(transactions)
   const MoneyFormatter = (value) =>
     new Intl
       .NumberFormat('en-US', { style: 'currency', currency: 'USD', /* signDisplay: 'always', currencySign: 'standard' */ })
@@ -24,7 +25,7 @@ const Dashboard = () => {
         <div className={styles.cardsContainer}>
           <Link className={styles.cards}>
             <WalletIcon />
-            <span>{MoneyFormatter(USER.points)}</span>
+            <span>${`${USER.points}`}</span>
           </Link>
           <Link className={styles.cards}>
             <CashIcon />

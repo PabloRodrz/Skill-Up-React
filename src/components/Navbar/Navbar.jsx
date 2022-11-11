@@ -15,7 +15,7 @@ import styled from './Navbar.module.css';
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const USER = useSelector((state) => state.auth.user);
+  const USER = JSON.parse(localStorage.getItem('user')) ??  {}
 
   return (
     <div className={styled.Navbar}>

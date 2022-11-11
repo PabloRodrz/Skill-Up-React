@@ -25,9 +25,9 @@ export async function readTransactions() {
       auxExpense += parseInt(d.amount)
     }
 
-    if (d.userId === USER.id && d.type === 'topup') {
-      auxMoneyTransf += parseInt(d.amount)
-    }
+    // if (d.userId === USER.id && d.type === 'topup') {
+    //    auxMoneyTransf += parseInt(d.amount)
+    // }
   }
 
   store.dispatch(changeExpenses({
