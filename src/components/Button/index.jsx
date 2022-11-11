@@ -1,14 +1,14 @@
-import buttonStyles from './button.module.css'
+import styles from './button.module.css'
 
-const ON_CLICK = function () { console.log('Botón accionado!') }
+const ON_CLICK = function () { }
 const VARIANT = {
-  primary: buttonStyles.buttonPrimary,
-  secondary: buttonStyles.buttonSecondary
+  primary: styles.buttonPrimary,
+  secondary: styles.buttonSecondary
 }
 const OPTIONS = {
   uppercase: {
-    true: buttonStyles.buttonUppercase,
-    false: buttonStyles.buttonLowercase
+    true: styles.buttonUppercase,
+    false: styles.buttonLowercase
   }
 }
 

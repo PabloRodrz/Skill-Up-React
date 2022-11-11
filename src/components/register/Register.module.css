@@ -1,0 +1,43 @@
+.formInputs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.labels {
+  margin-bottom: 3px;
+}
+
+.label {
+  font-size: 15px;
+}
+
+.form {
+  width: 120%;
+  display: flex;
+}
+
+.inputs {
+  background-color: #f2f2f2;
+  border: none;
+  height: 1.5rem;
+  width: 12rem;
+}
+
+.title {
+  text-align: center;
+  font-weight: 500;
+}
+
+.loginLink {
+  text-decoration: none;
+  color: var(--light-mode-text);
+}
+
+.signupFooter {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}

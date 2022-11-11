@@ -1,14 +1,14 @@
 // Icons
-import Logo from '../../assets/icons/FooterLogo'
+import Logo from '../../assets/icons/FooterLogo';
 import {
   FaInstagram,
   FaTwitterSquare,
   FaFacebookSquare,
   FaYoutube,
-} from 'react-icons/fa'
+} from 'react-icons/fa';
 
 // Styles
-import styled from './footer.module.css'
+import styled from './footer.module.css';
 
 const Footer = () => {
   return (
@@ -34,7 +34,11 @@ const Footer = () => {
             <h4>To recieve more information subscribe.</h4>
             <div className={styled.footerForm}>
               <form>
-                <input placeholder='Email' type='email' />
+                <input
+                  placeholder="Email"
+                  type="email"
+                  className={styled.inputs}
+                />
                 <button>Subscribe</button>
               </form>
             </div>
@@ -43,6 +47,6 @@ const Footer = () => {
       </footer>
       <div className={styled.copyright}>Development Team R7</div>
     </footer>
-  )
-}
-export default Footer
+  );
+};
+export default Footer;

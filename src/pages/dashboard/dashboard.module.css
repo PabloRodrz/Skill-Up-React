@@ -1,7 +1,6 @@
 .dashboard {
   background-color: var(--light-mode-bg);
   display: grid;
-  height: 100vh;
   grid-auto-rows: min-content;
   gap: 32px;
 }
@@ -21,18 +20,18 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .cards>svg {
-  background-color: #F5F7F9;
-  height: 48px;
-  width: 48px;
+  background-color: #f5f7f9;
+  height: 30px;
+  width: 30px;
   padding: 8px;
   border-radius: 50%;
   display: block;
   fill: #292929;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .cards>span {
@@ -41,17 +40,16 @@
   font-weight: bold;
   font-size: 2rem;
   color: var(--card-dark-gray);
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .cards>span::before {
   color: var(--card-light-gray);
   display: flex;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
   opacity: 70%;
-  transition: all .2s ease;
-
+  transition: all 0.2s ease;
 }
 
 .cards:nth-child(1)>span::before {
@@ -76,8 +74,8 @@
 }
 
 .cards:active>svg {
-  fill: #56CCF2;
-  background-color: #E2F5FF;
+  fill: #56ccf2;
+  background-color: #e2f5ff;
 }
 
 .cards:active>span {

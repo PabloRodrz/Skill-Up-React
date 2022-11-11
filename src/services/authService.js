@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { cleanTransactions } from '../slices/transactionsSlice'
 
 // Register user
 const register = async (userData) => {
@@ -38,6 +39,7 @@ const getLogedUser = async () => {
     'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me',
     config
   )
+
   if (res.data) {
     localStorage.setItem('user', JSON.stringify(res.data))
   }
@@ -48,6 +50,7 @@ const getLogedUser = async () => {
 const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
+  cleanTransactions()
 }
 
 const authService = {

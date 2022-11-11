@@ -1,27 +1,44 @@
 // Components
-import Header from './components/header/Header'
+import Error404 from './components/error404/Error404'
 import Footer from './components/footer/Footer'
 
 // Pages
-import HomePage from './pages/home/HomePage'
-import RegisterPage from './pages/register/RegisterPage'
+import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/login/LoginPage'
+import RegisterPage from './pages/register/RegisterPage'
+import SendMoney from './pages/send-money/SendMoney'
+import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage'
+import Transactions from './pages/Transactions'
 
 // Libraries
-import { Routes, Route } from 'react-router-dom'
-//header no va siempre. Agregar sidebar de manera condicional.
+import { useSelector } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+
 function App() {
+  const TOKEN = JSON.parse(localStorage.getItem('token'))?.accessToken ?? false
+  const USER = useSelector(state => state.auth.user) ?? false
+
   return (
     <div>
-      {/* <Header /> */}
-      <Routes>
-        <Route exact path='/' element={<HomePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-      </Routes>
+      {
+        TOKEN && USER
+          ?
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/sendmoney' element={<SendMoney />} />
+            <Route path='/transactions' element={<Transactions />} />
+            <Route path='/addmoney' element={<TopUpMoneyPage />} />
+            <Route path='*' element={<Error404 />} />
+          </Routes>
+          :
+          <Routes>
+            <Route path='/' element={<LoginPage />} />
+            <Route path='/signup' element={<RegisterPage />} />
+          </Routes>
+      }
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

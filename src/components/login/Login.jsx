@@ -1,113 +1,110 @@
 // Libraries
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
-import './login.css'
-import Button from '../Button/index'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Button from '../Button/index';
+import styled from './Login.module.css';
 // Redux
-import { login, reset, logedUser } from '../../slices/authSlice'
+import { logedUser, login, reset } from '../../slices/authSlice';
 
 function Login() {
-  const token = JSON.parse(localStorage.getItem('token'))
+  const token = JSON.parse(localStorage.getItem('token'));
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-  })
+  });
   const regex =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  const { email, password } = formData
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const { email, password } = formData;
 
-  const { isError, isSuccess, message } = useSelector((state) => state.auth)
+  const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isError) {
-      Swal.fire(`test ${message}`)
-      dispatch(reset())
-      return
+      Swal.fire({ icon: 'error', text: message });
+      dispatch(reset());
+      return;
     }
     if (isSuccess) {
-      Swal.fire('Login successful')
-      dispatch(logedUser())
-      navigate('/')
+      Swal.fire('', 'Login successful', 'success');
+      dispatch(logedUser());
+      setTimeout(() => navigate('/'), 300);
     }
 
-    if (token?.accessToken) {
-      navigate('/')
-    }
-
-    dispatch(reset())
-  }, [isError, message, navigate, dispatch, token?.accessToken, isSuccess])
+    dispatch(reset());
+  }, [
+    token?.accessToken /* isSuccess, isError, message, navigate, dispatch, isSuccess */,
+  ]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (email === '' || password === '') {
-      Swal.fire('Invalid credentials')
-      return
+      Swal.fire('Invalid credentials');
+      return;
     }
+
     if (email !== '' && !regex.test(email)) {
-      Swal.fire('Invalid mail or password')
-      return
-    } else {
-      dispatch(
-        login({
-          email,
-          password,
-        })
-      )
+      Swal.fire('Invalid mail or password');
+      return;
     }
-  }
+
+    dispatch(login({ email, password }));
+  };
 
   return (
     <>
-      <h2 className='login-title'>Login</h2>
+      <h2 className={styled.loginTitle}>Login</h2>
       <section>
-        <form onSubmit={onSubmit}>
-          <div className='form-inputs'>
+        <form className={styled.form} onSubmit={onSubmit}>
+          <div className={styled.formInputs}>
             <div>
-              <div className='labels'>
-                <label>Email</label>
+              <div className={styled.labels}>
+                <label className={styled.label}>Email</label>
               </div>
               <input
-                type='text'
-                id='email'
-                name='email'
+                type="text"
+                id="email"
+                name="email"
                 value={email}
                 onChange={onChange}
+                className={styled.inputs}
               />
             </div>
             <div>
-              <div className='labels'>
-                <label>Password</label>
+              <div className={styled.labels}>
+                <label className={styled.label}>Password</label>
               </div>
               <input
-                type='password'
-                id='password'
-                name='password'
+                type="password"
+                id="password"
+                name="password"
                 value={password}
                 onChange={onChange}
+                autoComplete="true"
+                className={styled.inputs}
               />
             </div>
           </div>
 
-          <div className='login-btn'>
+          <div className={styled.loginBtn}>
             <Button text={'LOGIN'} options={{ uppercase: true }} />
           </div>
-          <div className='login-footer'>
+          <div className={styled.loginFooter}>
             <span>
               New user?{' '}
-              <Link className='signup-link' to={'/signup'}>
+              <Link className={styled.signupLink} to={'/signup'}>
                 {' '}
                 <b>Sign up</b>
               </Link>
@@ -116,7 +113,7 @@ function Login() {
         </form>
       </section>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

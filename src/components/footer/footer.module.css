@@ -26,10 +26,11 @@
   flex-direction: column;
 }
 
-.subscribe input {
-  padding: 0;
+.inputs {
+  padding-left: 10px;
   height: 2rem;
   background-color: var(--light-pink);
+  border: none;
 }
 
 .subscribe button {
