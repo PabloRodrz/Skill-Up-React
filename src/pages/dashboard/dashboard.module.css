@@ -85,7 +85,3 @@
 .cards:active>span::before {
   color: var(--white);
 }
-
-.transactions {
-  border: 1px grey solid;
-}

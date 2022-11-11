@@ -8,14 +8,17 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  overflow-y: scroll;
+}
+
+.tableContainer {
+  height: 18em;
+  overflow-y: auto;
 }
 
 .headTable {
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
-  row-gap: 40px;
 }
 
 .headTable>h4 {
