@@ -15,7 +15,6 @@
   background-color: var(--dark-gray);
   display: flex;
   flex-direction: column;
-  padding: 16px 32px;
 }
 
 /* LOGO SECTION */
@@ -36,7 +35,7 @@
 /* MANAGE SECTION */
 
 .manageContainer {
-  margin-top: 30px;
+  margin-top: 8vh;
   margin-left: 36px;
 }
 
@@ -69,14 +68,14 @@
   fill: var(--light-blue);
 }
 
-.sections:hover svg>path {
+.sections:hover svg > path {
   fill: var(--light-blue);
 }
 
 /* PREFERENCE SECTION */
 
 .preferenceContainer {
-  margin-top: 20px;
+  margin-bottom: 5vh;
   margin-left: 36px;
 }
 
@@ -90,11 +89,11 @@
 .userContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  margin-top: 20px;
+  margin-left: 36px;
 }
 
-.userContainer>div {
+.userContainer > div {
   display: flex;
   flex-direction: column;
 }
@@ -113,9 +112,59 @@
   background-color: transparent;
 }
 
-.logOut>svg {
+.logOut > svg {
   display: block;
   height: 32px;
   width: 32px;
   color: #fff;
+  cursor: pointer;
+  margin-left: 40px;
 }
+
+/* @media (max-width: 900px) {
+  .Navbar {
+    max-width: 70px;
+    position: relative;
+  }
+  .userContainer {
+    margin: 0px 0px 0px 12px;
+  }
+  .manageContainer > span {
+    display: none;
+  }
+  .preferenceContainer > span {
+    display: none;
+  }
+
+  .userDetail {
+    display: none;
+  }
+
+  .sections {
+    margin-bottom: 30px;
+  }
+  .sections > p {
+    display: none;
+  }
+  .logoTitle {
+    display: none;
+  }
+  .userEmailContainer,
+  .userNameContainer {
+    display: none;
+  }
+  .logOut {
+    position: absolute;
+    left: -25px;
+    margin-top: 20px;
+  }
+  .manageContainer {
+    margin-bottom: 40px;
+  }
+  .manageContainer {
+    margin-left: 3px;
+  }
+  .preferenceContainer {
+    margin-left: 5px;
+  }
+} */

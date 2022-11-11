@@ -1,120 +1,92 @@
 .container {
-    height: calc(100%-42px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--light-mode-bg);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
 }
 
-.wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translateX(10rem);
-    flex-direction: column;
-    gap: 3rem;
+.inputContainer {
+  width: 60%;
+  height: 100%;
+  background-color: var(--light-mode-el);
+  box-shadow: var(--main-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 2.2rem;
-    box-shadow: var(--main-shadow);
-    height: 25rem;
-    width: 30rem;
+.resumeContainer {
+  width: 35%;
+  height: 100%;
+  background-color: var(--dark-blue);
+  box-shadow: var(--main-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
 }
 
-
-.userWrapper {
-    background-color: var(--light-blue);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 14rem;
-    text-align: center;
-    gap: 4rem;
-    padding: 4rem;
-    height: 26rem;
-    margin-right: 2rem;
+.inputContainer > form {
+  width: 50%;
 }
 
-.userWrapper>span {
-    font-size: 25px;
-    word-wrap: break-word;
-    width: 20rem;
+.inputDiv > input,
+select {
+  width: 100%;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding-left: 10px;
 }
 
-.title {
-    display: flex;
-    margin-left: 5rem;
-    height: 42px;
-    background-color: var(--light-mode-bg);
+.inputDiv > input {
+  background-color: #f2f2f2;
+  border: none;
+  height: 2rem;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
-.topUpTitle {
-    position: absolute;
-    margin-top: 2rem;
+.inputDiv > label {
+  font-size: 25px;
+  margin-bottom: 5px;
 }
 
-.topUpSelect {
-    background-color: #F2F2F2;
-    border: none;
-    height: 1.8rem;
-    width: 24.4rem;
-    border: 1px solid black;
+.inputDiv > select {
+  border: none;
+  height: 2.13rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
 }
 
-.inputTopup {
-    background-color: #F2F2F2;
-    border: none;
-    height: 1.8rem;
-    width: 24rem;
-    border: 1px solid black;
-}
-
-.inputDiv>input[type=number] {
-    -moz-appearance: textfield;
-}
-
-.inputDiv>input::-webkit-outer-spin-button,
-.inputDiv>input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.formInputs {
+  margin-bottom: 20px;
+  height: 100%;
 }
 
 .inputDiv {
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 1.5rem;
 }
 
-.inputDiv>label {
-    margin-bottom: 6px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 20px;
+.email {
+  font-size: 18px;
+  margin: 30px 0px 20px 0px;
 }
 
-/* button {
-    width: 12rem;
-    background-color: var(--primary-btn-color);
-    color: var(--light-mode-el);
-    font-weight: bold;
-    border: none;
-    outline: none;
-    padding: 8px 10px;
-    font-size: 16px;
-    width: 100%;
-    text-align: center;
-    transition: all 0.5s ease;
-    -webkit-text-stroke: 0.3px transparent;
-    cursor: pointer;
+.concept {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: var(--primary-btn-color-hover);
-    -webkit-text-stroke: 0.3px #000;
-} */
+.amount {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.resume {
+  text-align: center;
+  width: 60%;
+}

@@ -27,11 +27,11 @@
   color: var(--white);
 }
 
-form {
+.inputContainer > form {
   width: 50%;
 }
 
-input,
+.inputDiv > input,
 select {
   width: 100%;
   -ms-box-sizing: content-box;
@@ -41,7 +41,7 @@ select {
   padding-left: 10px;
 }
 
-input {
+.inputDiv > input {
   background-color: #f2f2f2;
   border: none;
   height: 2rem;
@@ -49,12 +49,12 @@ input {
   box-sizing: border-box;
 }
 
-label {
+.inputDiv > label {
   font-size: 25px;
   margin-bottom: 5px;
 }
 
-select {
+.inputDiv > select {
   border: none;
   height: 2.13rem;
   width: 100%;
