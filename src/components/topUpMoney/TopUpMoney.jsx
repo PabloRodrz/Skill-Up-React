@@ -1,9 +1,11 @@
-import styled from './TopUpMoney.module.css'
 import { useEffect, useState } from 'react'
-import { getAccountId } from '../../services/topUpService'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMoneyPostAPI } from '../../slices/addMoneySlice'
 import Swal from 'sweetalert2'
+import { getAccountId } from '../../services/topUpService'
+import { addMoneyPostAPI } from '../../slices/addMoneySlice'
+import Button from '../Button'
+import Layout from '../Layout/Layout'
+import styled from './TopUpMoney.module.css'
 const TopUpMoney = () => {
     const user = JSON.parse(localStorage.getItem("user"))
     const token = JSON.parse(localStorage.getItem("token"))
@@ -39,10 +41,10 @@ const TopUpMoney = () => {
     }
     //falta setear el skeleton para el loading
     return (
-        <>
+        <Layout page='Add money'>
             {isLoading ? <h1>loading..</h1> : <>
                 <div className={styled.title}>
-                    <h1 className={ styled.topUpTitle }>Top up money</h1>
+                    <h1 className={styled.topUpTitle}>Top up money</h1>
                 </div>
                 <div className={styled.container}>
                     <div className={styled.wrapper}>
@@ -56,15 +58,16 @@ const TopUpMoney = () => {
                             </div>
                             <div className={styled.inputDiv}>
                                 <label>Amount</label>
-                                <input className={ styled.inputTopup } required name="amount" type="number" pattern='[0-9]+' onChange={handleOnChange} />
+                                <input className={styled.inputTopup} required name="amount" type="number" pattern='[0-9]+' onChange={handleOnChange} />
                             </div>
                             <div className={styled.inputDiv}>
                                 <label>Currency</label>
-                                <input className={ styled.inputTopup } required name="currency" type="text" onChange={handleOnChange} />
+                                <input className={styled.inputTopup} required name="currency" type="text" onChange={handleOnChange} />
                             </div>
 
                             <div style={{ width: '12rem' }}>
-                                <button onClick={handleOnClick}>ADD</button>
+                                {/*  <button onClick={handleOnClick}>ADD</button> */}
+                                <Button action={handleOnClick} text='ADD' variant='primary' options={{ uppercase: true }} />
                             </div>
                         </div>
                     </div>
@@ -74,7 +77,7 @@ const TopUpMoney = () => {
                         <span>{`$${addMoneyPost.amount}`}</span>
                     </div>
                 </div></>}
-        </>
+        </Layout>
     )
 }
 

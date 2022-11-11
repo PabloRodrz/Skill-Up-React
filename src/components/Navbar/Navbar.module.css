@@ -53,15 +53,19 @@
 .sections {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: var(--light-mode-el);
 }
 
 .sections p {
   margin-left: 24px;
-  cursor: pointer;
+}
+
+.sections:hover {
+  color: var(--light-blue);
 }
 
 .hoverIcon:hover {
-  cursor: pointer;
   fill: var(--light-blue);
 }
 

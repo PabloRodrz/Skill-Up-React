@@ -42,7 +42,7 @@
     margin-right: 2rem;
 }
 
-.userWrapper span {
+.userWrapper>span {
     font-size: 25px;
     word-wrap: break-word;
     width: 20rem;
@@ -76,12 +76,12 @@
     border: 1px solid black;
 }
 
-input[type=number] {
+.inputDiv>input[type=number] {
     -moz-appearance: textfield;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.inputDiv>input::-webkit-outer-spin-button,
+.inputDiv>input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -91,14 +91,14 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
 }
 
-.inputDiv label {
+.inputDiv>label {
     margin-bottom: 6px;
     text-align: center;
     font-weight: 700;
     font-size: 20px;
 }
 
-button {
+/* button {
     width: 12rem;
     background-color: var(--primary-btn-color);
     color: var(--light-mode-el);
@@ -117,4 +117,4 @@ button {
 button:hover {
     background-color: var(--primary-btn-color-hover);
     -webkit-text-stroke: 0.3px #000;
-}
+} */

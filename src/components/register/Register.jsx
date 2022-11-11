@@ -142,7 +142,7 @@ const Register = () => {
           <div className={styled.signupFooter}>
             <span>
               Already registered?{' '}
-              <Link className={styled.loginLink} to={'/login'}>
+              <Link className={styled.loginLink} to={'/'}>
                 {' '}
                 <b>Log in</b>
               </Link>
