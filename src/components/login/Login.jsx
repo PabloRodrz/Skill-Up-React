@@ -33,7 +33,6 @@ function Login() {
     if (isSuccess) {
       Swal.fire('', 'Login successful', 'success')
       dispatch(logedUser())
-      console.log(isSuccess)
       setTimeout(() => navigate('/'), 300);
     }
 

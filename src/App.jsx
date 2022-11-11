@@ -7,11 +7,12 @@ import Dashboard from './pages/Dashboard'
 import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import SendMoney from './pages/send-money/SendMoney'
-import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage';
+import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage'
+import Transactions from './pages/Transactions'
 
 // Libraries
 import { useSelector } from 'react-redux'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   const TOKEN = JSON.parse(localStorage.getItem('token'))?.accessToken ?? false
@@ -25,8 +26,9 @@ function App() {
           <Routes>
             <Route path='/' element={<Dashboard />} />
             <Route path='/sendmoney' element={<SendMoney />} />
-            <Route path='*' element={<Error404 />} />
+            <Route path='/transactions' element={<Transactions />} />
             <Route path='/addmoney' element={<TopUpMoneyPage />} />
+            <Route path='*' element={<Error404 />} />
           </Routes>
           :
           <Routes>

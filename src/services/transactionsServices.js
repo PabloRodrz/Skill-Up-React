@@ -1,29 +1,56 @@
 import axios from 'axios'
 import store from '../redux/store'
-import { getTransactions } from '../slices/transactionsSlice'
+import { changeStatus, getTransactions } from '../slices/transactionsSlice'
 import api from '../utils/api.json'
 
-export async function readTransactions() {
+export function readTransactions() {
+  store.dispatch(changeStatus({ success: false, error: false, loading: true }))
   const token = JSON.parse(localStorage.getItem('token')).accessToken
 
-  const res = await axios.get(`${api.url}${api.transactions}`,
+  axios.get(`${api.url}${api.transactions}`,
     {
       headers: {
         Authorization: 'Bearer ' + token,
       }
-    }
-  ).catch(error => console.log(error))
+    })
+    .then(res => {
+      SearchSenderUser(res.data)
+    })
+    .catch(err => {
+      console.log(err.message),
+        store.dispatch(changeStatus({ success: false, error: true, loading: false }))
+    })
+}
 
-  const { nextPage, previousPage, data } = res.data
+export function navTransactions(pagePath) {
+  store.dispatch(changeStatus({ success: false, error: false, loading: true }))
+  const token = JSON.parse(localStorage.getItem('token')).accessToken
+
+  axios.get(`${api.url}${pagePath}`,
+    {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      }
+    })
+    .then(res => {
+      SearchSenderUser(res.data)
+    })
+    .catch(err => {
+      console.log(err.message),
+        store.dispatch(changeStatus({ success: false, error: true, loading: false }))
+    })
+}
+
+async function SearchSenderUser({ nextPage, previousPage, data }) {
   let transactions = []
 
   for (const d of data) {
     const user = await axios.get(`${api.url}${api.users}/${d.userId}`).catch(error => console.log(error))
     const { id, first_name, last_name, email, points, roleId } = user.data
-    delete d.userId
 
     transactions.push({ ...d, sender_user: { id, first_name, last_name, email, points, roleId } })
   }
 
   store.dispatch(getTransactions({ data: transactions, nextPage, previousPage }))
+  store.dispatch(changeStatus({ success: true, error: false, loading: false }))
 }

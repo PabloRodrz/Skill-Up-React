@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { cleanTransactions } from '../slices/transactionsSlice'
 
 // Register user
 const register = async (userData) => {
@@ -49,6 +50,7 @@ const getLogedUser = async () => {
 const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
+  cleanTransactions()
 }
 
 const authService = {

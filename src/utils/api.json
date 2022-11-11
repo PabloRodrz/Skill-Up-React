@@ -1,5 +1,8 @@
 {
   "url":"http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com",
   "transactions": "/transactions",
-  "users": "/users"
+  "users": "/users",
+  "accounts": {
+    "me": "/accounts/me"
+  }
 }

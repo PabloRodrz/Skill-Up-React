@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import AddMoneyIcon from "../../assets/icons/AddMoneyIcon";
 import DashboardIcon from "../../assets/icons/DashboardIcon";
@@ -27,26 +27,26 @@ const Navbar = () => {
         <div className={styled.manageContainer}>
           <span>Manage</span>
           <div className={styled.sectionsContainer}>
-            <div className={styled.sections}>
+            <Link className={styled.sections} to='/'>
               <DashboardIcon className={styled.hoverIcon} />
               <p>Dashboard</p>
-            </div>
-            <div className={styled.sections}>
+            </Link>
+            <Link className={styled.sections} to='/transactions'>
               <TransactionsIcon className={styled.hoverIcon} />
               <p>Transactions</p>
-            </div>
-            <div className={styled.sections}>
+            </Link>
+            <Link className={styled.sections} to='/addmoney'>
               <AddMoneyIcon className={styled.hoverIcon} />
               <p>Add money</p>
-            </div>
-            <div className={styled.sections}>
+            </Link>
+            <Link className={styled.sections} to=''>
               <SendMoney className={styled.hoverIcon} />
               <p>Send money</p>
-            </div>
-            <div className={styled.sections}>
+            </Link>
+            <Link className={styled.sections} to=''>
               <NewExpense className={styled.hoverIcon} />
               <p>New expense</p>
-            </div>
+            </Link>
           </div>
         </div>
         <div>

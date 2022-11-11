@@ -2,7 +2,7 @@
   text-align: justify;
 }
 
-.loginPageContainer{
+.loginPageContainer {
   height: 95vh;
   background-color: var(--light-blue);
   display: flex;
@@ -10,7 +10,7 @@
   justify-content: center;
 }
 
-.loginPageWrapper{
+.loginPageWrapper {
   background-color: white;
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@
 /* Media Querys */
 @media (max-width: 768px) {
   .loginPageContainer {
-    padding: 10px ;
+    padding: 10px;
   }
 }
 
