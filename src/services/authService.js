@@ -1,12 +1,13 @@
 import axios from 'axios'
-import { cleanTransactions } from '../slices/transactionsSlice'
-
+import store from '../redux/store'
+import { saveUserInfo } from '../slices/userSlice'
 // Register user
 const register = async (userData) => {
   const res = await axios.post(
     'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users',
     userData
   )
+  store.dispatch(saveUserInfo(res.data))
   return res.data
 }
 
@@ -50,7 +51,6 @@ const getLogedUser = async () => {
 const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  cleanTransactions()
 }
 
 const authService = {

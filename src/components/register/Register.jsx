@@ -38,7 +38,7 @@ const Register = () => {
 
     if (isSuccess) {
       Swal.fire('User registered successful');
-      navigate('/login');
+      navigate('/');
     }
 
     if (token?.accessToken) {
