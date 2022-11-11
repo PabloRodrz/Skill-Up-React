@@ -20,8 +20,7 @@
 .textContainer {
   margin-left: 124px;
 }
-
-h1 {
+.textContainer > h1 {
   font-size: 50px;
 }
 
@@ -29,7 +28,7 @@ h1 {
   font-weight: bold;
 }
 
-p {
+.textContainer > p {
   font-size: 18px;
 }
 

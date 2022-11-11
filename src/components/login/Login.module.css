@@ -19,11 +19,15 @@
   width: 120%;
 }
 
-input {
-  background-color: #F2F2F2;
+.loginTitle {
+  text-align: center;
+}
+
+.inputs {
+  background-color: #f2f2f2;
   border: none;
   height: 1.5rem;
-  width: 12rem;
+  width: 100%;
 }
 
 .formInputs {
@@ -44,6 +48,6 @@ input {
   color: var(--light-mode-text);
 }
 
-span {
+.loginFooter > span {
   font-size: 14px;
 }

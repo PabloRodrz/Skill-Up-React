@@ -2,7 +2,7 @@
   text-align: justify;
 }
 
-h1 {
+.container > h1 {
   padding: 0;
   position: relative;
   margin-bottom: 0px;
@@ -16,12 +16,10 @@ h1 {
 .welcomeTitle {
   font-weight: 500;
   font-size: 2em;
-  
 }
 
 .welcomeTitleAlkybank {
   font-size: 40px;
-
 }
 
 .welcomeContainer {
@@ -31,21 +29,18 @@ h1 {
   justify-content: center;
 }
 
-.welcomeSpan{
+.welcomeSpan {
   margin-top: 2rem;
 }
-
 
 @media (max-width: 500px) {
   .welcomeContainer {
     height: 120px;
     margin-top: 70px;
   }
-  
+
   .welcomeSpan {
     margin: 0;
     text-align: center;
   }
-
 }
-
