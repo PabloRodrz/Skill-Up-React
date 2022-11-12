@@ -3,9 +3,9 @@ import store from '../redux/store'
 import { changeExpenses, changeStatus, getTransactions } from '../slices/transactionsSlice'
 import api from '../utils/api.json'
 
-export async function readTransactions() {
+export async function ReadTransactions() {
   store.dispatch(changeStatus({ success: false, error: false, loading: true }))
-  const token = JSON.parse(localStorage.getItem('token')).accessToken
+  const token = store?.getState()?.auth?.token
   const USER = store.getState().auth.user
   let auxExpense = 0, auxMoneyTransf = 0
 
@@ -38,14 +38,13 @@ export async function readTransactions() {
   SearchSenderUser(res.data)
 }
 
-export function navTransactions(pagePath) {
+export function NavTransactions(pagePath) {
   store.dispatch(changeStatus({ success: false, error: false, loading: true }))
-  const token = JSON.parse(localStorage.getItem('token')).accessToken
 
   axios.get(`${api.url}${pagePath}`,
     {
       headers: {
-        Authorization: 'Bearer ' + token,
+        Authorization: 'Bearer ' + store.getState().auth.token,
       }
     })
     .then(res => {
