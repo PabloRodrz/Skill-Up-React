@@ -9,10 +9,9 @@ import AuxComponent from '../Transactions/AuxComponent';
 import styles from './dashboard.module.css';
 
 const Dashboard = () => {
-  const USER = useSelector(state => state.auth.user)
+  const USER = useSelector(state => state.accounts.userAccount[0])
   const { totalExpending, expenses, moneyTransferred } = useSelector(state => state.transactions)
-  const transactions = useSelector(state => state.transactions)
-  console.log(transactions)
+  // const transactions = useSelector(state => state.transactions)
   const MoneyFormatter = (value) =>
     new Intl
       .NumberFormat('en-US', { style: 'currency', currency: 'USD', /* signDisplay: 'always', currencySign: 'standard' */ })
@@ -25,7 +24,7 @@ const Dashboard = () => {
         <div className={styles.cardsContainer}>
           <article className={styles.cards}>
             <WalletIcon />
-            <span>${`${USER.points}`}</span>
+            <span>${`${USER.money}`}</span>
           </article>
           <article className={styles.cards}>
             <CashIcon />

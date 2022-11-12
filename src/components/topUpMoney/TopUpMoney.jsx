@@ -9,23 +9,8 @@ import styled from './TopUpMoney.module.css';
 
 const TopUpMoney = () => {
   const { user, token } = useSelector(state => state.auth)
-  const [accountId, setAccountId] = useState(0);
+  const accountId = useSelector(state => state.accounts.userAccount[0].id)
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    GetAccountId(token)
-      .then((res) => {
-        setAccountId(res.data[0].id);
-      })
-      .catch((e) =>
-        Swal.fire(
-          'Oops!',
-          `We couldn't get your account id, try again later`,
-          'error'
-        )
-      );
-  }, []);
-
   const isLoading = useSelector((state) => state.accounts.loading);
   const [addMoneyPost, setAddMoneyPost] = useState({
     amount: 0,
@@ -51,7 +36,6 @@ const TopUpMoney = () => {
       addMoneyPost.concept !== '' &&
       addMoneyPost.currency !== ''
     ) {
-      console.log("If handleOnClick")
       dispatch(addMoneyPostAPI(objectForPostAPI));
     }
   };

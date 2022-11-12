@@ -10,7 +10,10 @@ const initialState = {
   loading: false,
   totalExpending: 0,
   expenses: 0,
-  moneyTransferred: 0
+  moneyTransferred: 0,
+  sendMoneyLoading: false,
+  sendMoneySuccess: false,
+  sendMoneyError: false
 }
 
 export const transactionsSlice = createSlice({
@@ -53,8 +56,13 @@ export const transactionsSlice = createSlice({
         state.moneyTransferred = action.payload.moneyTransferred
       }
     },
+    handleTransferMoney(state, {payload}){
+      state.sendMoneyLoading = payload.sendMoneyLoading
+      state.sendMoneySuccess = payload.sendMoneySuccess
+      state.sendMoneyError = payload.sendMoneyError
+    }
   }
 })
 
-export const { getTransactions, cleanTransactions, changePage, changeStatus, changeExpenses } = transactionsSlice.actions
+export const { getTransactions, cleanTransactions, changePage, changeStatus, changeExpenses, handleTransferMoney } = transactionsSlice.actions
 export default transactionsSlice.reducer

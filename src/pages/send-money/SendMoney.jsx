@@ -1,12 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout/Layout';
 import styled from './SendMoney.module.css';
 import Swal from 'sweetalert2';
+import { transferMoney } from '../../services/transactionsService';
+import { useSelector, useDispatch } from 'react-redux';
+import { handleTransferMoney } from '../../slices/transactionsSlice';
 
 const SendMoney = () => {
+  const dispatch = useDispatch()
+  const token = useSelector(state => state.auth.token)
+  const isLoading = useSelector(state => state.transactions.sendMoneyLoading)
+  const isSuccess = useSelector(state => state.transactions.sendMoneySuccess)
+
+  useEffect(() => {
+    if (isSuccess) {
+      setSendMoney({
+        CBU: '',
+        concept: '',
+        amount: '',
+      })
+    }
+  }, [isLoading, isSuccess]);
+
   const [sendMoney, setSendMoney] = useState({
-    email: '',
+    CBU: '',
     concept: '',
     amount: '',
   });
@@ -19,8 +37,9 @@ const SendMoney = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (
-      sendMoney.email === '' ||
+      sendMoney.CBU === '' ||
       sendMoney.concept === '' ||
       sendMoney.amount === ''
     ) {
@@ -31,7 +50,9 @@ const SendMoney = () => {
       });
       return;
     }
+
   };
+
   return (
     <Layout page='Send money'>
       <div className={styled.container}>
@@ -39,35 +60,32 @@ const SendMoney = () => {
           <form onSubmit={handleSubmit}>
             <div className={styled.formInputs}>
               <div className={styled.inputDiv}>
-                <label>Recipient Email</label>
+                <label>CBU</label>
                 <input
-                  type='text'
-                  id='email'
-                  name='email'
-                  value={sendMoney.email}
-                  pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+                  type='number'
+                  name='CBU'
+                  value={sendMoney.CBU}
+                  pattern='[0-9]'
                   onChange={handleChange}
                 />
               </div>
               <div className={styled.inputDiv}>
-                  <label>Concept</label>
+                <label>Concept</label>
                 <select
-                  id='concept'
                   name='concept'
                   value={sendMoney.concept}
                   onChange={handleChange}
                 >
-                  <option value='default'>Choose a concept</option>
-                  <option value='Others'>Others</option>
+                  <option hidden value='default'>Choose a concept</option>
                   <option value='Payment'>Payment</option>
                   <option value='Transfer'>Transfer</option>
+                  <option value='Others'>Others</option>
                 </select>
               </div>
               <div className={styled.inputDiv}>
                 <label>Amount</label>
                 <input
                   type='number'
-                  id='amount'
                   name='amount'
                   value={sendMoney.amount}
                   onChange={handleChange}
@@ -77,16 +95,20 @@ const SendMoney = () => {
               </div>
             </div>
             <div className='btn'>
-              <Button text={'send'} options={{ uppercase: true }}></Button>
+              <Button action={() => transferMoney({ ...sendMoney, token: token })} text={isLoading ? "processing" : 'send'} options={{ uppercase: true }}></Button>
             </div>
           </form>
         </div>
         <div className={styled.resumeContainer}>
-          {sendMoney.email ? (
+          {sendMoney.CBU ? (
             <>
               <h1>Resume</h1>
-              <span className={styled.email}>{sendMoney.email}</span>
-              <span className={styled.concept}>{sendMoney.concept}</span>
+              <b>CBU</b><br />
+              <span >{sendMoney.CBU}</span>
+              {sendMoney.concept && <>
+                <b>Concept</b> <br />
+                <span>{sendMoney.concept}</span>
+              </>}
               {sendMoney.amount && (
                 <span className={styled.amount}>${sendMoney.amount}</span>
               )}

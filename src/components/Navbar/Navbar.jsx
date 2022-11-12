@@ -13,8 +13,7 @@ import styled from './Navbar.module.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const USER = JSON.parse(localStorage.getItem('user')) ??  {}
-
+  const USER = useSelector(state => state.auth.user)
   return (
     <div className={styled.Navbar}>
       <div className={styled.logoContainer}>
