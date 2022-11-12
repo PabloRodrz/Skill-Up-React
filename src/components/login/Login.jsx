@@ -1,21 +1,15 @@
 // Libraries
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { getAccountId } from '../../services/topUpService';
-import { createAccountThunk } from '../../slices/createAccountSlice';
+import { LogIn } from '../../services/authService';
 import Button from '../Button/index';
 import styled from './Login.module.css';
-// Redux
-import { logedUser, login, reset } from '../../slices/authSlice';
 
 function Login() {
-  const token = JSON.parse(localStorage.getItem('token'));
-  const userRegistered = useSelector(state => state.register.userRegistered)
-
+  const token = useSelector(state => state.auth.token)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: '',
@@ -25,33 +19,9 @@ function Login() {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const { email, password } = formData;
 
-  const { isError, isSuccess, message } = useSelector((state) => state.auth);
-
   useEffect(() => {
-    if (isError) {
-      Swal.fire({ icon: 'error', text: message });
-      dispatch(reset());
-      return;
-    }
 
-    if (isSuccess) {
-      Swal.fire('', 'Login successful', 'success');
-      dispatch(logedUser());
-      getAccountId(token.accessToken).then(res => {
-        const { accessToken } = token
-
-        if (res.data.length === 0) {
-          dispatch(createAccountThunk({ ...userRegistered, token: accessToken }))
-        }
-      }
-      ).catch(e => console.log(e))
-    }
-    setTimeout(() => navigate('/'), 300);
-
-    dispatch(reset());
-  }, [
-    token?.accessToken /* isSuccess, isError, message, navigate, dispatch, isSuccess */,
-  ]);
+  }, []);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -72,7 +42,7 @@ function Login() {
       return;
     }
 
-    dispatch(login({ email, password }));
+    LogIn({ email, password });
   };
 
   return (

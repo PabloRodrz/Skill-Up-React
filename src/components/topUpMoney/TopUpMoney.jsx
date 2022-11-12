@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { getAccountId } from '../../services/topUpService';
-import { addMoneyPostAPI } from '../../slices/addMoneySlice';
+import { AddMoney, GetAccountId } from '../../services/accountsService';
 import Button from '../Button';
 import Layout from '../Layout/Layout';
 import styled from './TopUpMoney.module.css';
 
 const TopUpMoney = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const token = JSON.parse(localStorage.getItem('token'));
+  const { user, token } = useSelector(state => state.auth)
   const [accountId, setAccountId] = useState(0);
   const dispatch = useDispatch();
-  const { accessToken } = token;
+
   useEffect(() => {
-    getAccountId(accessToken)
+    GetAccountId(to)
       .then((res) => {
         setAccountId(res.data[0].id);
       })
@@ -26,6 +24,7 @@ const TopUpMoney = () => {
         )
       );
   }, []);
+
   const isLoading = useSelector((state) => state.addMoney.loading);
   const [addMoneyPost, setAddMoneyPost] = useState({
     amount: 0,

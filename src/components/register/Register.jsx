@@ -4,14 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Button from '../../components/Button/index';
+import { SignIn } from '../../services/authService';
 import styled from './Register.module.css';
 
-// Redux
-import { register } from '../../services/registerService';
-import { reset } from '../../slices/authSlice';
-
 const Register = () => {
-  const token = JSON.parse(localStorage.getItem('token'));
+  const token = useSelector(state => state.auth.token)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,23 +28,23 @@ const Register = () => {
   const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isError) {
-      Swal.fire({ icon: 'error', text: message });
-      dispatch(reset());
-      return;
-    }
-
-    if (isSuccess) {
-      Swal.fire('User registered successful');
-      navigate('/');
-    }
-
-    if (token?.accessToken) {
-      navigate('/');
-    }
-
-    dispatch(reset());
-  }, [token?.accessToken, isSuccess, isError, message, navigate, dispatch]);
+    /*     if (isError) {
+          Swal.fire({ icon: 'error', text: message });
+          dispatch(reset());
+          return;
+        }
+    
+        if (isSuccess) {
+          Swal.fire('User registered successful');
+          navigate('/');
+        }
+    
+        if (token?.accessToken) {
+          navigate('/');
+        }
+    
+        dispatch(reset()); */
+  }, [/* token?.accessToken, isSuccess, isError, message, navigate, dispatch */]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -56,7 +53,7 @@ const Register = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       first_name,
@@ -80,7 +77,10 @@ const Register = () => {
       return;
     }
 
-    register(userData);
+    const res = await SignIn(userData)
+    if (res) {
+      navigate('/');
+    }
   };
 
   return (

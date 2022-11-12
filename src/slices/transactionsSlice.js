@@ -23,7 +23,16 @@ export const transactionsSlice = createSlice({
       state.previousPage = action.payload.previousPage
     },
     cleanTransactions: (state) => {
-      state = initialState
+      state.data = initialState.data
+      state.transactionPage = initialState.transactionPage
+      state.previousPage = initialState.previousPage
+      state.nextPage = initialState.nextPage
+      state.success = initialState.success
+      state.error = initialState.error
+      state.loading = initialState.loading
+      state.totalExpending = initialState.totalExpending
+      state.expenses = initialState.expenses
+      state.moneyTransferred = initialState.moneyTransferred
     },
     changePage: (state, action) => {
       state.transactionPage = action.payload
