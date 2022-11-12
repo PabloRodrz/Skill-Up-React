@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout/Layout';
-import styled from './SendMoney.module.css';
-import Swal from 'sweetalert2';
 import { transferMoney } from '../../services/transactionsService';
-import { useSelector, useDispatch } from 'react-redux';
-import { handleTransferMoney } from '../../slices/transactionsSlice';
+import styled from './SendMoney.module.css';
 
 const SendMoney = () => {
   const dispatch = useDispatch()
@@ -95,7 +94,12 @@ const SendMoney = () => {
               </div>
             </div>
             <div className='btn'>
-              <Button action={() => transferMoney({ ...sendMoney, token: token })} text={isLoading ? "processing" : 'send'} options={{ uppercase: true }}></Button>
+              <Button action={
+                () => {
+                  transferMoney({ ...sendMoney, token: token })
+                  console.log(sendMoney)
+                }}
+                text={isLoading ? "processing" : 'send'} options={{ uppercase: true }}></Button>
             </div>
           </form>
         </div>

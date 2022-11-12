@@ -34,8 +34,8 @@ export const LogIn = async ({ email, password }) => {
 
   if (secondRes) {
     const { data } = secondRes
-    const {id, createdAt} = data
-    console.log("secondres " + createdAt, id)
+    const { id, createdAt } = data
+
     store.dispatch(LoginUser({ user: data, token }))
     CreateAccount({ createdAt, id, token })
 
@@ -77,6 +77,7 @@ export const SignIn = async (userData) => {
 export const LogOut = () => {
   store.dispatch(Reset())
   store.dispatch(cleanTransactions())
+  localStorage.clear()
   Swal.fire({
     icon: 'success',
     text: 'Logout successful',

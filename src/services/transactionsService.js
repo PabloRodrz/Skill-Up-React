@@ -1,8 +1,9 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 import store from '../redux/store'
 import { changeExpenses, changeStatus, getTransactions, handleTransferMoney } from '../slices/transactionsSlice'
 import api from '../utils/api.json'
-import Swal from 'sweetalert2'
+import { modifyAccount } from './accountsService'
 
 export async function ReadTransactions() {
   store.dispatch(changeStatus({ success: false, error: false, loading: true }))
@@ -73,38 +74,49 @@ async function SearchSenderUser({ nextPage, previousPage, data }) {
 export const transferMoney = async ({ concept, CBU, amount, token }) => {
   store.dispatch(handleTransferMoney({ sendMoneySuccess: false, sendMoneyError: false, sendMoneyLoading: true }))
   const type = "payment"
-  return await axios.post(`http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${CBU}`,
+  const currentAmount = store.getState()?.accounts?.userAccount[0]?.money
+
+  // Se agrega el dinero a otra cuenta
+  await axios.post(`http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${CBU}`,
     { type: type, concept: concept, amount: amount },
     { headers: { Authorization: 'Bearer ' + token } }
-  ).then(res => {
-    store.dispatch(handleTransferMoney({ sendMoneySuccess: true, sendMoneyError: false, sendMoneyLoading: false }))
-    if (res.status === 200) {
-      Swal.fire('', 'Deposit done!', 'success');
-    }
-  })
+  )
+
+
+    .then(response => {
+      store.dispatch(handleTransferMoney({ sendMoneySuccess: true, sendMoneyError: false, sendMoneyLoading: false }))
+      if (response?.status === 200) {
+        Swal.fire('', 'Deposit done!', 'success');
+      }
+
+      // Se modifica el dinero que está en la cuenta del usuario logueado
+      modifyAccount({ toAccountId: CBU, amountToTransfer: currentAmount - amount })
+    })
+
+
     .catch((e) => {
       store.dispatch(handleTransferMoney({ sendMoneySuccess: false, sendMoneyError: true, sendMoneyLoading: false }))
-      if (e.status === 400) {
+      if (e?.response?.status === 400) {
         Swal.fire('Oops!', 'Not enough cash :(', 'error');
       }
-      if (e.status === 401) {
+      if (e?.response?.status === 401) {
         Swal.fire(
           'Oops!',
           'You are unauthorized to do this transaction',
           'error'
         );
       }
-      if (e.status === 403) {
+      if (e?.response?.status === 403) {
         Swal.fire(
           'Oops!',
           'Source account or destination account blocked',
           'error'
         );
       }
-      if (e.status === 404) {
+      if (e?.response?.status === 404) {
         Swal.fire('Oops!', 'The account was not found', 'error');
       }
-      if (e.status === 500) {
+      if (e?.response?.status === 500) {
         Swal.fire(
           'Oops!',
           'Internal server error. Try again later!',

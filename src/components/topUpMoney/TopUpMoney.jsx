@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
-import { GetAccountId } from '../../services/accountsService';
+import { modifyAccount } from '../../services/accountsService';
 import { addMoneyPostAPI } from '../../slices/accountsSlice';
 import Button from '../Button';
 import Layout from '../Layout/Layout';
@@ -10,6 +9,7 @@ import styled from './TopUpMoney.module.css';
 const TopUpMoney = () => {
   const { user, token } = useSelector(state => state.auth)
   const accountId = useSelector(state => state.accounts.userAccount[0].id)
+  const money = useSelector(state => state.accounts.userAccount[0].money)
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.accounts.loading);
   const [addMoneyPost, setAddMoneyPost] = useState({
@@ -37,8 +37,10 @@ const TopUpMoney = () => {
       addMoneyPost.currency !== ''
     ) {
       dispatch(addMoneyPostAPI(objectForPostAPI));
+      modifyAccount({ amountToTransfer: addMoneyPost.amount + money })
     }
   };
+
   //falta setear el skeleton para el loading
   return (
     <Layout page="Add money">
