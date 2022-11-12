@@ -34,9 +34,10 @@ export const LogIn = async ({ email, password }) => {
 
   if (secondRes) {
     const { data } = secondRes
-
+    const {id, createdAt} = data
+    console.log("secondres " + createdAt, id)
     store.dispatch(LoginUser({ user: data, token }))
-    CreateAccount({ ...res.data, token })
+    CreateAccount({ createdAt, id, token })
 
     Swal.fire({
       icon: 'success',

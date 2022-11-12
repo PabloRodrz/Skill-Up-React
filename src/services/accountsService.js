@@ -3,11 +3,13 @@ import Swal from 'sweetalert2';
 import store from '../redux/store';
 import { saveUserAccount } from '../slices/accountsSlice';
 
-export const CreateAccount = ({ createdAt, userId, token }) => {
+export const CreateAccount = ({ createdAt, id, token }) => {
   GetAccountId(token).then(res => {
     if (res.data.length === 0) {
+
+          console.log("entro al if")
       axios.post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts', {
-        creationDate: createdAt, money: 0, isBlocked: false, userId: userId
+        creationDate: createdAt, money: 0, isBlocked: false, userId: id
       },
         { headers: { authorization: 'Bearer ' + token } })
         .then(res => { })
@@ -80,11 +82,11 @@ export const addMoney = async (postData, accountId, token) => {
 };
 
 export const GetAccountId = async (token) => {
+  console.log("getaccount")
   const res = await axios.get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/me',
     { headers: { Authorization: 'Bearer ' + token } }
   )
     .catch(err => {
-      console.log('GETAccount: ', err)
       Swal.fire({
         icon: 'error',
         text: err?.response?.data?.error,

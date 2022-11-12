@@ -11,7 +11,7 @@ export const addMoneyPostAPI = createAsyncThunk(
       postData.token
     )
       .then((res) => {
-      }).catch(e => {})
+      }).catch(e => { })
   }
 );
 
@@ -31,9 +31,8 @@ export const accountsSlice = createSlice({
       state.success = payload.success
       state.error = payload.error
     },
-    saveUserAccount(state, {payload}){
-      console.log("Save user account payload: " + payload)
-      state.userAccount = payload
+    saveUserAccount(state, action) {
+      state.userAccount = action.payload
     }
   },
   extraReducers: (builder) => {
