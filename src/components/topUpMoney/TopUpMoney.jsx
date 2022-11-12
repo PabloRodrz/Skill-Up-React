@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { AddMoney, GetAccountId } from '../../services/accountsService';
+import { GetAccountId } from '../../services/accountsService';
+import { addMoneyPostAPI } from '../../slices/accountsSlice';
 import Button from '../Button';
 import Layout from '../Layout/Layout';
 import styled from './TopUpMoney.module.css';
@@ -12,7 +13,7 @@ const TopUpMoney = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    GetAccountId(to)
+    GetAccountId(token)
       .then((res) => {
         setAccountId(res.data[0].id);
       })
@@ -25,7 +26,7 @@ const TopUpMoney = () => {
       );
   }, []);
 
-  const isLoading = useSelector((state) => state.addMoney.loading);
+  const isLoading = useSelector((state) => state.accounts.loading);
   const [addMoneyPost, setAddMoneyPost] = useState({
     amount: 0,
     concept: '',
@@ -38,17 +39,19 @@ const TopUpMoney = () => {
       type: 'topup',
     },
     accountId,
-    accessToken,
+    token,
   };
   const handleOnChange = (e) => {
     setAddMoneyPost((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleOnClick = (e) => {
+    e.preventDefault()
     if (
       addMoneyPost.amount > 0 &&
       addMoneyPost.concept !== '' &&
       addMoneyPost.currency !== ''
     ) {
+      console.log("If handleOnClick")
       dispatch(addMoneyPostAPI(objectForPostAPI));
     }
   };

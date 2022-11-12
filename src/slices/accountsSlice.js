@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { addMoney } from '../services/accountsService';
 
-/* export const createAccountThunk = createAsyncThunk(
+export const createAccountThunk = createAsyncThunk(
   'user/createAccountAPI',
   async (postData) => {
 
@@ -39,48 +40,16 @@ import { createSlice } from '@reduxjs/toolkit';
 export const addMoneyPostAPI = createAsyncThunk(
   'user/addMoneyPostAPI',
   async (postData) => {
-    return await topUpMoney(
+    return await addMoney(
       postData.postData,
       postData.accountId,
-      postData.accessToken
+      postData.token
     )
       .then((res) => {
-        if (res.status === 200) {
-          Swal.fire('', 'Deposit done!', 'success');
-        }
-      })
-      .catch((e) => {
-        if (res.status === 400) {
-          Swal.fire('Oops!', 'Not enough cash :(', 'error');
-        }
-        if (res.status === 401) {
-          Swal.fire(
-            'Oops!',
-            'You are unauthorized to do this transaction',
-            'error'
-          );
-        }
-        if (res.status === 403) {
-          Swal.fire(
-            'Oops!',
-            'Source account or destination account blocked',
-            'error'
-          );
-        }
-        if (res.status === 404) {
-          Swal.fire('Oops!', 'The account was not found', 'error');
-        }
-        if (res.status === 500) {
-          Swal.fire(
-            'Oops!',
-            'Internal server error. Try again later!',
-            'error'
-          );
-        }
-      });
+      }).catch(e => {})
   }
 );
- */
+
 const initialState = {
   loading: false,
   success: false,
@@ -96,8 +65,8 @@ export const accountsSlice = createSlice({
       state.success = payload.success
       state.error = payload.error
     }
-  }
-  /* extraReducers: (builder) => {
+  },
+  extraReducers: (builder) => {
     builder.addCase(createAccountThunk.pending, (state) => {
       state.loading = true;
     });
@@ -111,7 +80,7 @@ export const accountsSlice = createSlice({
       state.success = false;
       state.error = true;
     });
-  }, */
+  },
 });
 
 export const { ChangeStatus } = accountsSlice.actions;
