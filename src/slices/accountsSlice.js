@@ -1,41 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { addMoney } from '../services/accountsService';
 
-export const createAccountThunk = createAsyncThunk(
-  'user/createAccountAPI',
-  async (postData) => {
-
-    return await createAccount(postData)
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((e) => {
-        if (e.status === 401) {
-          Swal.fire(
-            'Oops!',
-            'You are unauthorized',
-            'error'
-          );
-        }
-        if (e.status === 403) {
-          Swal.fire(
-            'Oops!',
-            'Forbiden access',
-            'error'
-          );
-        }
-        if (e.status === 500) {
-          Swal.fire(
-            'Oops!',
-            'Internal server error. Try again later!',
-            'error'
-          );
-        }
-      });
-  }
-);
-
-
 
 export const addMoneyPostAPI = createAsyncThunk(
   'user/addMoneyPostAPI',
@@ -54,6 +19,7 @@ const initialState = {
   loading: false,
   success: false,
   error: false,
+  userAccount: []
 };
 
 export const accountsSlice = createSlice({
@@ -64,18 +30,22 @@ export const accountsSlice = createSlice({
       state.loading = payload.loading
       state.success = payload.success
       state.error = payload.error
+    },
+    saveUserAccount(state, {payload}){
+      console.log("Save user account payload: " + payload)
+      state.userAccount = payload
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(createAccountThunk.pending, (state) => {
+    builder.addCase(addMoneyPostAPI.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(createAccountThunk.fulfilled, (state) => {
+    builder.addCase(addMoneyPostAPI.fulfilled, (state) => {
       state.loading = false;
       state.success = true;
       state.error = false;
     });
-    builder.addCase(createAccountThunk.rejected, (state) => {
+    builder.addCase(addMoneyPostAPI.rejected, (state) => {
       state.loading = false;
       state.success = false;
       state.error = true;
@@ -83,5 +53,5 @@ export const accountsSlice = createSlice({
   },
 });
 
-export const { ChangeStatus } = accountsSlice.actions;
+export const { ChangeStatus, saveUserAccount } = accountsSlice.actions;
 export default accountsSlice.reducer;

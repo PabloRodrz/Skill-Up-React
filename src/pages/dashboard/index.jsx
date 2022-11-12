@@ -23,22 +23,22 @@ const Dashboard = () => {
     <Layout page="Dashboard">
       <section className={styles.dashboard}>
         <div className={styles.cardsContainer}>
-          <Link className={styles.cards}>
+          <article className={styles.cards}>
             <WalletIcon />
             <span>${`${USER.points}`}</span>
-          </Link>
-          <Link className={styles.cards}>
+          </article>
+          <article className={styles.cards}>
             <CashIcon />
             <span>{MoneyFormatter(totalExpending)}</span>
-          </Link>
-          <Link className={styles.cards}>
+          </article>
+          <article className={styles.cards}>
             <NewExpenseIcon />
             <span>{MoneyFormatter(expenses)}</span>
-          </Link>
-          <Link className={styles.cards}>
+          </article>
+          <article className={styles.cards}>
             <MoneyTransferredIcon />
             <span>{MoneyFormatter(moneyTransferred)}</span>
-          </Link>
+          </article>
         </div>
 
         <AuxComponent viewAll={true} viewPagination={false} />

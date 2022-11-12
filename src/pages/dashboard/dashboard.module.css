@@ -68,20 +68,20 @@
   content: 'Money transferred';
 }
 
-.cards:active {
+.cards:hover {
   box-shadow: none;
   background-color: var(--card-dark-gray);
 }
 
-.cards:active>svg {
+.cards:hover>svg {
   fill: #56ccf2;
   background-color: #e2f5ff;
 }
 
-.cards:active>span {
+.cards:hover>span {
   color: var(--white);
 }
 
-.cards:active>span::before {
+.cards:hover>span::before {
   color: var(--white);
 }

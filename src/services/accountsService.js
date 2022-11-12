@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import store from '../redux/store';
+import { saveUserAccount } from '../slices/accountsSlice';
 
 export const CreateAccount = ({ createdAt, userId, token }) => {
   GetAccountId(token).then(res => {
@@ -10,12 +12,30 @@ export const CreateAccount = ({ createdAt, userId, token }) => {
         { headers: { authorization: 'Bearer ' + token } })
         .then(res => { })
         .catch(err => {
-          Swal.fire({
-            icon: 'error',
-            text: err?.response?.data?.error,
-          })
+          if (err.status === 401) {
+            Swal.fire(
+              'Oops!',
+              'You are unauthorized',
+              'error'
+            );
+          }
+          if (err.status === 403) {
+            Swal.fire(
+              'Oops!',
+              'Forbidden access',
+              'error'
+            );
+          }
+          if (err.status === 500) {
+            Swal.fire(
+              'Oops!',
+              'Internal server error. Try again later!',
+              'error'
+            );
+          }
         })
     }
+    store.dispatch(saveUserAccount(res.data))
   })
 }
 

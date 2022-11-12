@@ -50,16 +50,14 @@ const SendMoney = () => {
                 />
               </div>
               <div className={styled.inputDiv}>
-                <div>
-                  <label htmlFor='country'>Concept</label>
-                </div>
+                  <label>Concept</label>
                 <select
                   id='concept'
                   name='concept'
                   value={sendMoney.concept}
                   onChange={handleChange}
                 >
-                  <option value='default'>---Select one option---</option>
+                  <option value='default'>Choose a concept</option>
                   <option value='Others'>Others</option>
                   <option value='Payment'>Payment</option>
                   <option value='Transfer'>Transfer</option>
