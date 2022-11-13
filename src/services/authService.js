@@ -44,6 +44,11 @@ export const LogIn = async ({ email, password }) => {
       text: 'Login successful',
     });
 
+    const { lsUser } = JSON.parse(localStorage?.getItem('expenses')) ?? []
+    if (lsUser?.id !== id) {
+      localStorage.removeItem('expenses')
+    }
+
     return true
   }
 
@@ -77,7 +82,7 @@ export const SignIn = async (userData) => {
 export const LogOut = () => {
   store.dispatch(Reset())
   store.dispatch(cleanTransactions())
-  localStorage.clear()
+  localStorage.removeItem('alkybank_state')
   Swal.fire({
     icon: 'success',
     text: 'Logout successful',

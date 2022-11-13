@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout/Layout';
 import styled from './NewExpense.module.css';
 
 const NewExpense = () => {
-  const [expensesStorage, setExpensesStorage] = useState([])
+  const user = useSelector(state => state.auth.user)
+  const [expensesData, setExpensesData] = useState(JSON.parse(localStorage.getItem('expenses'))?.data ?? [])
   const [newExpense, setNewExpense] = useState({
     concept: '',
     date: '',
@@ -14,17 +16,20 @@ const NewExpense = () => {
   });
 
   const handleLocalStorage = () => {
-    const expenses = localStorage?.getItem('expenses')
-    if (expenses !== null) {
-      setExpensesStorage([...expenses, newExpense])
+    const { data } = JSON.parse(localStorage?.getItem('expenses')) ?? []
+
+    if (data && data?.length) {
+      localStorage.setItem('expenses', JSON.stringify({
+        lsUser: { id: user?.id },
+        data: [...data, newExpense]
+      }))
+    } else {
+      localStorage.setItem('expenses', JSON.stringify({ lsUser: { id: user?.id }, data: [newExpense] }))
     }
 
-    if (expensesStorage.length > 0) {
-      localStorage.setItem('expenses', JSON.stringify(expensesStorage))
-    } else {
-      localStorage.setItem('expenses', JSON.stringify(newExpense))
-    }
+    setExpensesData(JSON.parse(localStorage.getItem('expenses'))?.data)
   }
+
   const handleChange = (e) => {
     setNewExpense((prevExpenses) => ({
       ...prevExpenses,
@@ -51,6 +56,7 @@ const NewExpense = () => {
     }
     // reset();
   };
+
   return (
     <Layout page="Expenses">
       <div className={styled.container}>
@@ -122,38 +128,36 @@ const NewExpense = () => {
           </form>
         </div>
         <div className={styled.resumeContainer}>
-          <h2>Expenses history</h2>
-          <table className={styled.table}>
-            <thead>
-              <tr>
-                <th scope="col">Concept</th>
-                <th scope="col">Currency</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Date</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Concept">concept</td>
-                <td data-label="Currency">currency</td>
-                <td data-label="Amount">amount</td>
-                <td data-label="Date">date</td>
-              </tr>
-              <tr>
-                <td data-label="Concept">concept</td>
-                <td data-label="Currency">currency</td>
-                <td data-label="Amount">amount</td>
-                <td data-label="Date">date</td>
-              </tr>
-              <tr>
-                <td data-label="Concept">concept</td>
-                <td data-label="Currency">currency</td>
-                <td data-label="Amount">amount</td>
-                <td data-label="Date">date</td>
-              </tr>
-            </tbody>
-          </table>
+          <h2>{expensesData.length ? 'Expenses history' : 'There are not expenses'}</h2>
+          {
+            expensesData.length
+              ?
+              <table className={styled.table}>
+                <thead>
+                  <tr>
+                    <th scope="col">Concept</th>
+                    <th scope="col">Currency</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    expensesData?.map((el, index) => (
+                      <tr key={index}>
+                        <td data-label="Concept">{el.concept}</td>
+                        <td data-label="Currency">{el.currency}</td>
+                        <td data-label="Amount">{el.amount}</td>
+                        <td data-label="Date">{el.date}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+              :
+              null
+          }
         </div>
       </div>
     </Layout>
