@@ -27,25 +27,6 @@ const Register = () => {
 
   const { isError, isSuccess, message } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    /*     if (isError) {
-          Swal.fire({ icon: 'error', text: message });
-          dispatch(reset());
-          return;
-        }
-    
-        if (isSuccess) {
-          Swal.fire('User registered successful');
-          navigate('/');
-        }
-    
-        if (token?.accessToken) {
-          navigate('/');
-        }
-    
-        dispatch(reset()); */
-  }, [/* token?.accessToken, isSuccess, isError, message, navigate, dispatch */]);
-
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -69,11 +50,11 @@ const Register = () => {
       first_name === '' ||
       last_name === ''
     ) {
-      Swal.fire('Complete all fields');
+      Swal.fire('', 'Complete all fields', 'warning');
       return;
     }
     if (email !== '' && !regex.test(email)) {
-      Swal.fire('Invalid mail');
+      Swal.fire('','Invalid mail','warning');
       return;
     }
 
