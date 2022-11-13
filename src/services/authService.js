@@ -1,63 +1,86 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import store from '../redux/store'
+import { LoginUser, Reset } from '../slices/authSlice'
 import { cleanTransactions } from '../slices/transactionsSlice'
+import { CreateAccount } from './accountsService'
 
-// Register user
-const register = async (userData) => {
+export const LogIn = async ({ email, password }) => {
+  const res = await axios.post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login',
+    { email, password }
+  )
+    .catch(err => {
+      Swal.fire({
+        icon: 'error',
+        text: err?.response?.data?.error,
+      })
+    })
+
+  const token = res.data.accessToken
+
+  const secondRes = await axios.get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me',
+    {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      }
+    }
+  )
+    .catch(err => {
+      Swal.fire({
+        icon: 'error',
+        text: err?.response?.data?.error,
+      })
+    })
+
+  if (secondRes) {
+    const { data } = secondRes
+    const { id, createdAt } = data
+
+    store.dispatch(LoginUser({ user: data, token }))
+    CreateAccount({ createdAt, id, token })
+
+    Swal.fire({
+      icon: 'success',
+      text: 'Login successful',
+    });
+
+    return true
+  }
+
+  return false
+}
+
+
+export const SignIn = async (userData) => {
   const res = await axios.post(
     'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users',
     userData
   )
-  return res.data
-}
+    .catch(err => {
+      Swal.fire({
+        icon: 'error',
+        text: err?.response?.data?.error,
+      })
+    })
 
-// Login user
-const login = async ({ email, password }) => {
-  const res = await axios.post(
-    'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login',
-    { email, password }
-  )
-
-  if (res.data) {
-    localStorage.setItem('token', JSON.stringify(res.data))
+  if (res?.data) {
+    Swal.fire({
+      icon: 'success',
+      text: 'User registered successful',
+    })
+    return true
   }
 
-  return res.data
+  return false
 }
 
-// Get loged user
-
-const getLogedUser = async () => {
-  // Token
-  const token = JSON.parse(localStorage.getItem('token'))
-
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + token.accessToken,
-    },
-  }
-  const res = await axios.get(
-    'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me',
-    config
-  )
-
-  if (res.data) {
-    localStorage.setItem('user', JSON.stringify(res.data))
-  }
-  return res.data
+export const LogOut = () => {
+  store.dispatch(Reset())
+  store.dispatch(cleanTransactions())
+  localStorage.clear()
+  Swal.fire({
+    icon: 'success',
+    text: 'Logout successful',
+  })
+  return true
 }
-
-// Logout user
-const logout = () => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('user')
-  cleanTransactions()
-}
-
-const authService = {
-  register,
-  logout,
-  login,
-  getLogedUser,
-}
-
-export default authService

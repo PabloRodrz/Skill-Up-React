@@ -1,32 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Swal from 'sweetalert2';
-import { getAccountId } from '../../services/topUpService';
-import { addMoneyPostAPI } from '../../slices/addMoneySlice';
+import { modifyAccount } from '../../services/accountsService';
+import { addMoneyPostAPI } from '../../slices/accountsSlice';
 import Button from '../Button';
 import Layout from '../Layout/Layout';
 import styled from './TopUpMoney.module.css';
 
 const TopUpMoney = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const token = JSON.parse(localStorage.getItem('token'));
-  const [accountId, setAccountId] = useState(0);
+  const { user, token } = useSelector(state => state.auth)
+  const accountId = useSelector(state => state.accounts.userAccount[0].id)
+  const money = useSelector(state => state.accounts.userAccount[0].money)
   const dispatch = useDispatch();
-  const { accessToken } = token;
-  useEffect(() => {
-    getAccountId(accessToken)
-      .then((res) => {
-        setAccountId(res.data[0].id);
-      })
-      .catch((e) =>
-        Swal.fire(
-          'Oops!',
-          `We couldn't get your account id, try again later`,
-          'error'
-        )
-      );
-  }, []);
-  const isLoading = useSelector((state) => state.addMoney.loading);
+  const isLoading = useSelector((state) => state.accounts.loading);
   const [addMoneyPost, setAddMoneyPost] = useState({
     amount: 0,
     concept: '',
@@ -39,20 +24,23 @@ const TopUpMoney = () => {
       type: 'topup',
     },
     accountId,
-    accessToken,
+    token,
   };
   const handleOnChange = (e) => {
     setAddMoneyPost((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleOnClick = (e) => {
+    e.preventDefault()
     if (
       addMoneyPost.amount > 0 &&
       addMoneyPost.concept !== '' &&
       addMoneyPost.currency !== ''
     ) {
       dispatch(addMoneyPostAPI(objectForPostAPI));
+      modifyAccount({ amountToTransfer: parseInt(addMoneyPost.amount) + parseInt(money) })
     }
   };
+
   //falta setear el skeleton para el loading
   return (
     <Layout page="Add money">

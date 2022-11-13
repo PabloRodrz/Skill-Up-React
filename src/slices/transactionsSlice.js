@@ -10,7 +10,10 @@ const initialState = {
   loading: false,
   totalExpending: 0,
   expenses: 0,
-  moneyTransferred: 0
+  moneyTransferred: 0,
+  sendMoneyLoading: false,
+  sendMoneySuccess: false,
+  sendMoneyError: false
 }
 
 export const transactionsSlice = createSlice({
@@ -23,7 +26,16 @@ export const transactionsSlice = createSlice({
       state.previousPage = action.payload.previousPage
     },
     cleanTransactions: (state) => {
-      state = initialState
+      state.data = initialState.data
+      state.transactionPage = initialState.transactionPage
+      state.previousPage = initialState.previousPage
+      state.nextPage = initialState.nextPage
+      state.success = initialState.success
+      state.error = initialState.error
+      state.loading = initialState.loading
+      state.totalExpending = initialState.totalExpending
+      state.expenses = initialState.expenses
+      state.moneyTransferred = initialState.moneyTransferred
     },
     changePage: (state, action) => {
       state.transactionPage = action.payload
@@ -44,8 +56,13 @@ export const transactionsSlice = createSlice({
         state.moneyTransferred = action.payload.moneyTransferred
       }
     },
+    handleTransferMoney(state, {payload}){
+      state.sendMoneyLoading = payload.sendMoneyLoading
+      state.sendMoneySuccess = payload.sendMoneySuccess
+      state.sendMoneyError = payload.sendMoneyError
+    }
   }
 })
 
-export const { getTransactions, cleanTransactions, changePage, changeStatus, changeExpenses } = transactionsSlice.actions
+export const { getTransactions, cleanTransactions, changePage, changeStatus, changeExpenses, handleTransferMoney } = transactionsSlice.actions
 export default transactionsSlice.reducer

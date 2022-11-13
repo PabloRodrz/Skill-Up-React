@@ -25,6 +25,7 @@
   justify-content: center;
   align-items: center;
   color: var(--white);
+  gap: 10px;
 }
 
 .inputContainer > form {
@@ -47,6 +48,7 @@ select {
   height: 2rem;
   padding-left: 10px;
   box-sizing: border-box;
+  
 }
 
 .inputDiv > label {
@@ -84,6 +86,7 @@ select {
 .amount {
   font-size: 25px;
   font-weight: bold;
+  margin-top: 2rem;
 }
 
 .resume {

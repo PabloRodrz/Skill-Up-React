@@ -5,22 +5,23 @@ import { useNavigate } from "react-router-dom"
 import MenuIcon from "../../assets/icons/MenuIcon"
 import NextPageIcon from "../../assets/icons/NextPageIcon"
 import PreviousPageIcon from "../../assets/icons/PreviousPageIcon"
-import { navTransactions, readTransactions } from "../../services/transactionsServices"
+import { NavTransactions, ReadTransactions } from "../../services/transactionsService"
 import { changePage } from "../../slices/transactionsSlice"
 import styles from './transactions.module.css'
 
 export default function AuxComponent({ viewAll = false, viewPagination = true } = {}) {
-  const USER = useSelector(state => state.auth.user)
+  const { user } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { data, transactionPage, previousPage, nextPage, success, loading, error } = useSelector(state => state.transactions)
   let renderedComponent = 'Initial'
+
   const HandleChangePage = (page) => {
-    navTransactions(page)
+    NavTransactions(page)
   }
 
   useEffect(() => {
-    readTransactions()
+    ReadTransactions()
   }, [])
 
   if (loading) {
@@ -60,7 +61,7 @@ export default function AuxComponent({ viewAll = false, viewPagination = true } 
                   const { first_name, last_name } = el?.sender_user
                   const DATE = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
                     .format(new Date(el.createdAt))
-                  const TRANSACTION_TO_ME = el?.userId !== USER?.id
+                  const TRANSACTION_TO_ME = el?.userId !== user?.id
 
                   return (
                     <tr key={el.id}>

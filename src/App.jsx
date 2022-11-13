@@ -15,8 +15,8 @@ import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
-  const TOKEN = JSON.parse(localStorage.getItem('token'))?.accessToken ?? false
-  const USER = useSelector(state => state.auth.user) ?? false
+  const TOKEN = useSelector(state => state.auth.token)
+  const USER = useSelector(state => state.auth.user)
 
   return (
     <div>
