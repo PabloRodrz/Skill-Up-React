@@ -16,7 +16,7 @@ export const LogIn = async ({ email, password }) => {
       })
     })
 
-  const token = res.data.accessToken
+  const token = res?.data?.accessToken
 
   const secondRes = await axios.get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me',
     {

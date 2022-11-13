@@ -46,13 +46,13 @@ export default function AuxComponent({ viewAll = false, viewPagination = true } 
           <table className={styles.table}>
             <thead>
               <tr>
-                <th scope="col">Sender</th>
-                <th scope="col">Concept</th>
-                <th scope="col">Type</th>
-                <th scope="col">Date</th>
-                <th scope="col">Entry/spent</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th>Sender</th>
+                <th>Concept</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Entry/spent</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -61,22 +61,21 @@ export default function AuxComponent({ viewAll = false, viewPagination = true } 
                   const { first_name, last_name } = el?.sender_user
                   const DATE = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
                     .format(new Date(el.createdAt))
-                  const TRANSACTION_TO_ME = el?.userId !== user?.id
+                  const TRANSACTION_TO_ME = el?.userId === user?.id
 
                   return (
                     <tr key={el.id}>
-                      <td data-label='Sender'>{!TRANSACTION_TO_ME ? 'self' : `${first_name} ${last_name}`}</td>
-                      <td data-label='Concept'>{el.concept}</td>
-                      <td data-label='Type'>{el.type}</td>
-                      <td data-label='Date'>{DATE}</td>
+                      <td>{TRANSACTION_TO_ME ? 'self' : `${first_name} ${last_name}`}</td>
+                      <td>{el.concept}</td>
+                      <td>{el.type}</td>
+                      <td>{DATE}</td>
                       <td
-                        data-label='Entry/spent'
                         className={
-                          TRANSACTION_TO_ME
+                          TRANSACTION_TO_ME && el.type === 'topup'
                             ? styles.conceptGreen
                             : styles.conceptRed}
                       >
-                        {TRANSACTION_TO_ME ? 'entry' : 'spent'}</td>
+                        {TRANSACTION_TO_ME && el.type === 'topup' ? 'entry' : 'spent'}</td>
                       <td>${el.amount}</td>
                       <td>
                         <Menu
