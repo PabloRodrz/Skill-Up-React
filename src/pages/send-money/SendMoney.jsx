@@ -7,10 +7,10 @@ import { transferMoney } from '../../services/transactionsService';
 import styled from './SendMoney.module.css';
 
 const SendMoney = () => {
-  const dispatch = useDispatch()
-  const token = useSelector(state => state.auth.token)
-  const isLoading = useSelector(state => state.transactions.sendMoneyLoading)
-  const isSuccess = useSelector(state => state.transactions.sendMoneySuccess)
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
+  const isLoading = useSelector((state) => state.transactions.sendMoneyLoading);
+  const isSuccess = useSelector((state) => state.transactions.sendMoneySuccess);
 
   useEffect(() => {
     if (isSuccess) {
@@ -18,7 +18,7 @@ const SendMoney = () => {
         CBU: '',
         concept: '',
         amount: '',
-      })
+      });
     }
   }, [isLoading, isSuccess]);
 
@@ -49,11 +49,10 @@ const SendMoney = () => {
       });
       return;
     }
-
   };
 
   return (
-    <Layout page='Send money'>
+    <Layout page="Send money">
       <div className={styled.container}>
         <div className={styled.inputContainer}>
           <form onSubmit={handleSubmit}>
@@ -61,44 +60,48 @@ const SendMoney = () => {
               <div className={styled.inputDiv}>
                 <label>CBU</label>
                 <input
-                  type='number'
-                  name='CBU'
+                  type="number"
+                  name="CBU"
                   value={sendMoney.CBU}
-                  pattern='[0-9]'
+                  pattern="[0-9]"
                   onChange={handleChange}
                 />
               </div>
               <div className={styled.inputDiv}>
                 <label>Concept</label>
                 <select
-                  name='concept'
+                  name="concept"
                   value={sendMoney.concept}
                   onChange={handleChange}
                 >
-                  <option hidden value='default'>Choose a concept</option>
-                  <option value='Payment'>Payment</option>
-                  <option value='Transfer'>Transfer</option>
-                  <option value='Others'>Others</option>
+                  <option hidden value="default">
+                    Choose a concept
+                  </option>
+                  <option value="Payment">Payment</option>
+                  <option value="Transfer">Transfer</option>
+                  <option value="Others">Others</option>
                 </select>
               </div>
               <div className={styled.inputDiv}>
                 <label>Amount</label>
                 <input
-                  type='number'
-                  name='amount'
+                  type="number"
+                  name="amount"
                   value={sendMoney.amount}
                   onChange={handleChange}
-                  min='1'
-                  pattern='[0-9]'
+                  min="1"
+                  pattern="[0-9]"
                 />
               </div>
             </div>
-            <div className='btn'>
-              <Button action={
-                () => {
-                  transferMoney({ ...sendMoney, token: token })
+            <div className="btn">
+              <Button
+                action={() => {
+                  transferMoney({ ...sendMoney, token: token });
                 }}
-                text={isLoading ? "processing" : 'send'} options={{ uppercase: true }}></Button>
+                text={isLoading ? 'processing' : 'send'}
+                options={{ uppercase: true }}
+              ></Button>
             </div>
           </form>
         </div>
@@ -106,12 +109,14 @@ const SendMoney = () => {
           {sendMoney.CBU ? (
             <>
               <h1>Resume</h1>
-              <b>CBU</b><br />
-              <span >{sendMoney.CBU}</span>
-              {sendMoney.concept && <>
-                <b>Concept</b> <br />
-                <span>{sendMoney.concept}</span>
-              </>}
+              <b>CBU</b>
+              <span>{sendMoney.CBU}</span>
+              {sendMoney.concept && (
+                <>
+                  <b className={styled.concept}>Concept</b> <br />
+                  <span>{sendMoney.concept}</span>
+                </>
+              )}
               {sendMoney.amount && (
                 <span className={styled.amount}>${sendMoney.amount}</span>
               )}
