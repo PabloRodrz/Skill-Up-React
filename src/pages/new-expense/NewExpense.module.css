@@ -29,8 +29,19 @@
 
 .table {
   overflow-y: auto;
-  max-height: 500px;
+  height: 500px;
+  
 }
+
+.textTable{
+  padding: 20px;
+  
+}
+
+.label {
+  text-align: center;
+}
+
 
 .inputContainer>form {
   width: 50%;

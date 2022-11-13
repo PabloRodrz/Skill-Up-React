@@ -40,6 +40,7 @@ const TopUpMoney = () => {
       modifyAccount({ amountToTransfer: parseInt(addMoneyPost.amount) + parseInt(money) })
     }
   };
+  const currencies = {ARS: "$", USD: "$", EUR: "€"}
 
   //falta setear el skeleton para el loading
   return (
@@ -72,14 +73,21 @@ const TopUpMoney = () => {
                   />
                 </div>
                 <div className={styled.inputDiv}>
-                  <label>Currency</label>
-                  <input
-                    className={styled.inputTopup}
-                    required
-                    name="currency"
-                    type="text"
-                    onChange={handleOnChange}
-                  />
+                <label>Currency</label>
+                <select
+                  className={styled.inputTopup}
+                  name="currency"
+                  onChange={handleOnChange}
+                  value={ addMoneyPost.currency }
+                  
+                >
+                  <option hidden value="default">
+                    Choose currency
+                  </option>
+                  <option value="ARS">ARS</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                </select>
                 </div>
 
                 <div className="btn">
@@ -104,7 +112,7 @@ const TopUpMoney = () => {
                 <span className={styled.email}>{user?.email}</span>
                 <span
                   className={styled.amount}
-                >{`$${addMoneyPost.amount}`}</span>
+                >{`${currencies[addMoneyPost.currency] ? currencies[addMoneyPost.currency] : "$"  }${addMoneyPost.amount}`}</span>
               </>
             ) : (
               <p className={styled.resume}>

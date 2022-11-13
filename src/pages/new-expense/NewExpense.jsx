@@ -57,6 +57,8 @@ const NewExpense = () => {
     // reset();
   };
 
+  const currencies = {ARS: "$", USD: "$", EUR: "€"}
+
   return (
     <Layout page="Expenses">
       <div className={styled.container}>
@@ -112,9 +114,9 @@ const NewExpense = () => {
                   <option hidden value="default">
                     Choose currency
                   </option>
-                  <option value="PESO">$</option>
-                  <option value="DOLAR">USD</option>
-                  <option value="EURO">€</option>
+                  <option value="ARS">ARS</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
                 </select>
               </div>
             </div>
@@ -131,30 +133,33 @@ const NewExpense = () => {
           <h2>{expensesData.length ? 'Expenses history' : 'There are not expenses'}</h2>
           {
             expensesData.length
+
               ?
-              <table className={styled.table}>
+              <div className={styled.table}>
+              <table  >
                 <thead>
                   <tr>
-                    <th scope="col">Concept</th>
-                    <th scope="col">Currency</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Date</th>
-                    <th scope="col"></th>
+                    <th className={ styled.textTable } scope="col">Concept</th>
+                    <th  className={ styled.textTable } scope="col">Currency</th>
+                    <th  className={ styled.textTable }  scope="col">Amount</th>
+                    <th  className={ styled.textTable } scope="col">Date</th>
+                    <th   className={ styled.textTable } scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   {
                     expensesData?.map((el, index) => (
                       <tr key={index}>
-                        <td data-label="Concept">{el.concept}</td>
-                        <td data-label="Currency">{el.currency}</td>
-                        <td data-label="Amount">{el.amount}</td>
-                        <td data-label="Date">{el.date}</td>
+                        <td className={ styled.label } data-label="Concept">{el.concept}</td>
+                        <td className={ styled.label } data-label="Currency">{el.currency}</td>
+                        <td className={ styled.label } data-label="Amount"> { currencies[el.currency] }{el.amount}</td>
+                        <td className={ styled.label } data-label="Date">{el.date}</td>
                       </tr>
                     ))
                   }
                 </tbody>
               </table>
+              </div>
               :
               null
           }
