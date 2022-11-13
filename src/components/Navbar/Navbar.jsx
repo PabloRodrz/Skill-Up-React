@@ -13,7 +13,7 @@ import styled from './Navbar.module.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const USER = useSelector(state => state.auth.user)
+  const USER = useSelector((state) => state.auth.user);
   return (
     <div className={styled.Navbar}>
       <div className={styled.logoContainer}>
@@ -40,7 +40,7 @@ const Navbar = () => {
               <SendMoney className={styled.hoverIcon} />
               <p>Send money</p>
             </Link>
-            <Link className={styled.sections} to="">
+            <Link className={styled.sections} to="/newexpense">
               <NewExpense className={styled.hoverIcon} />
               <p>New expense</p>
             </Link>
@@ -67,7 +67,7 @@ const Navbar = () => {
               className={styled.logOut}
               onClick={() => {
                 if (LogOut()) {
-                  navigate('/')
+                  navigate('/');
                 }
               }}
             >

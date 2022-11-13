@@ -21,13 +21,14 @@
 
 .loginTitle {
   text-align: center;
+  margin-left: 32px;
 }
 
 .inputs {
   background-color: #f2f2f2;
   border: none;
   height: 1.5rem;
-  width: 100%;
+  width: 98%;
 }
 
 .formInputs {

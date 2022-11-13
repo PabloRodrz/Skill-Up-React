@@ -6,7 +6,7 @@
 }
 
 .inputContainer {
-  width: 60%;
+  width: 50%;
   height: 100%;
   background-color: var(--light-mode-el);
   box-shadow: var(--main-shadow);
@@ -16,15 +16,15 @@
 }
 
 .resumeContainer {
-  width: 38%;
+  width: 47%;
   height: 100%;
   background-color: var(--dark-blue);
   box-shadow: var(--main-shadow);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--white);
 }
 
 .inputContainer > form {
@@ -32,7 +32,8 @@
 }
 
 .inputDiv > input,
-select {
+select,
+input[type='date'] {
   width: 100%;
   -ms-box-sizing: content-box;
   -moz-box-sizing: content-box;
@@ -99,4 +100,19 @@ select {
 
 .concept {
   margin-top: 25px;
+}
+
+input[type='date'] {
+  appearance: none;
+  border: none;
+  background-color: #f2f2f2;
+  height: 2rem;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+.historyContainer {
+  width: 100%;
+  background-color: white;
+  padding: 10px;
 }
