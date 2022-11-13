@@ -5,7 +5,6 @@ import DashboardIcon from '../../assets/icons/DashboardIcon';
 import Logo from '../../assets/icons/Logo';
 import LogOutIcon from '../../assets/icons/LogOutIcon';
 import NewExpense from '../../assets/icons/NewExpense';
-import NightModeIcon from '../../assets/icons/NightModeIcon';
 import SendMoney from '../../assets/icons/SendMoney';
 import TransactionsIcon from '../../assets/icons/TransactionsIcon';
 import { LogOut } from '../../services/authService';
@@ -14,6 +13,7 @@ import styled from './Navbar.module.css';
 const Navbar = () => {
   const navigate = useNavigate();
   const USER = useSelector((state) => state.auth.user);
+  const CBU = useSelector(state => state.accounts?.userAccount[0]?.id ? state.accounts?.userAccount[0]?.id : state.accounts?.userAccount?.id)
   return (
     <div className={styled.Navbar}>
       <div className={styled.logoContainer}>
@@ -53,6 +53,7 @@ const Navbar = () => {
                 className={styled.userNameContainer}
               >{`${USER.first_name} ${USER.last_name}`}</span>
               <span className={styled.userEmailContainer}>{USER.email}</span>
+              <span className={styled.userEmailContainer}>CBU: {CBU}</span>
             </div>
             <button
               className={styled.logOut}
@@ -67,7 +68,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
