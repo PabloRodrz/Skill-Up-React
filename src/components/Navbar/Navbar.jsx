@@ -14,6 +14,7 @@ import styled from './Navbar.module.css';
 const Navbar = () => {
   const navigate = useNavigate();
   const USER = useSelector((state) => state.auth.user);
+  const CBU = useSelector(state => state.accounts?.userAccount[0]?.id ? state.accounts?.userAccount[0]?.id : state.accounts?.userAccount?.id)
   return (
     <div className={styled.Navbar}>
       <div className={styled.logoContainer}>
@@ -53,6 +54,7 @@ const Navbar = () => {
                 className={styled.userNameContainer}
               >{`${USER.first_name} ${USER.last_name}`}</span>
               <span className={styled.userEmailContainer}>{USER.email}</span>
+              <span className={styled.userEmailContainer}>CBU: {CBU}</span>
             </div>
             <button
               className={styled.logOut}
@@ -67,7 +69,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
