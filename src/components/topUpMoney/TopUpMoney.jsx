@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { modifyAccount } from '../../services/accountsService';
 import { addMoneyPostAPI } from '../../slices/accountsSlice';
 import Button from '../Button';
@@ -38,6 +39,12 @@ const TopUpMoney = () => {
     ) {
       dispatch(addMoneyPostAPI(objectForPostAPI));
       modifyAccount({ amountToTransfer: parseInt(addMoneyPost.amount) + parseInt(money) })
+    }else{
+      Swal.fire({
+        title: 'Error',
+        text: 'All fields must be completed',
+        icon: 'warning',
+      });
     }
   };
   const currencies = {ARS: "$", USD: "$", EUR: "€"}

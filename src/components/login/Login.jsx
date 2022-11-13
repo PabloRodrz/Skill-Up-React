@@ -30,12 +30,12 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === '' || password === '') {
-      Swal.fire('Invalid credentials');
+      Swal.fire('', 'Invalid credentials', 'warning');
       return;
     }
 
     if (email !== '' && !regex.test(email)) {
-      Swal.fire('Invalid mail or password');
+      Swal.fire('', 'Invalid mail or password', 'warning');
       return;
     }
 
