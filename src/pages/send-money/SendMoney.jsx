@@ -97,7 +97,6 @@ const SendMoney = () => {
               <Button action={
                 () => {
                   transferMoney({ ...sendMoney, token: token })
-                  console.log(sendMoney)
                 }}
                 text={isLoading ? "processing" : 'send'} options={{ uppercase: true }}></Button>
             </div>
