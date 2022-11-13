@@ -1,17 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import Button from '../../components/Button';
 import Layout from '../../components/Layout/Layout';
 import styled from './NewExpense.module.css';
 
 const NewExpense = () => {
-  const [expensesStorage, setExpensesStorage] = useState();
+  const user = useSelector(state => state.auth.user)
+  const [expensesData, setExpensesData] = useState(JSON.parse(localStorage.getItem('expenses'))?.data ?? [])
   const [newExpense, setNewExpense] = useState({
     concept: '',
     date: '',
     amount: '',
     currency: '',
   });
+
+  const handleLocalStorage = () => {
+    const { data } = JSON.parse(localStorage?.getItem('expenses')) ?? []
+
+    if (data && data?.length) {
+      localStorage.setItem('expenses', JSON.stringify({
+        lsUser: { id: user?.id },
+        data: [...data, newExpense]
+      }))
+    } else {
+      localStorage.setItem('expenses', JSON.stringify({ lsUser: { id: user?.id }, data: [newExpense] }))
+    }
+
+    setExpensesData(JSON.parse(localStorage.getItem('expenses'))?.data)
+  }
 
   const handleChange = (e) => {
     setNewExpense((prevExpenses) => ({
@@ -22,8 +39,6 @@ const NewExpense = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    expensesStorage.push(newExpense);
-    console.log(expensesStorage);
     if (
       newExpense.concept === '' ||
       newExpense.date === '' ||
@@ -36,9 +51,14 @@ const NewExpense = () => {
         icon: 'warning',
       });
       return;
+    } else {
+      handleLocalStorage()
+      Swal.fire('', 'Expense added!', 'success')
     }
-    reset();
   };
+
+  const currencies = {ARS: "$", USD: "$", EUR: "€"}
+
   return (
     <Layout page="Expenses">
       <div className={styled.container}>
@@ -55,6 +75,7 @@ const NewExpense = () => {
                   <option hidden value="default">
                     Choose a concept
                   </option>
+                  <option hidden value="">Choose a concept</option>
                   <option value="Payment">Payment</option>
                   <option value="Transfer">Transfer</option>
                   <option value="Food">Food</option>
@@ -93,9 +114,9 @@ const NewExpense = () => {
                   <option hidden value="default">
                     Choose currency
                   </option>
-                  <option value="PESO">$</option>
-                  <option value="DOLAR">USD</option>
-                  <option value="EURO">€</option>
+                  <option value="ARS">ARS</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
                 </select>
               </div>
             </div>
@@ -109,38 +130,39 @@ const NewExpense = () => {
           </form>
         </div>
         <div className={styled.resumeContainer}>
-          <h2>Expenses history</h2>
-          <table className={styled.table}>
-            <thead>
-              <tr>
-                <th scope="col">Concept</th>
-                <th scope="col">Currency</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Date</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Concept">concept</td>
-                <td data-label="Currency">currency</td>
-                <td data-label="Amount">amount</td>
-                <td data-label="Date">date</td>
-              </tr>
-              <tr>
-                <td data-label="Concept">concept</td>
-                <td data-label="Currency">currency</td>
-                <td data-label="Amount">amount</td>
-                <td data-label="Date">date</td>
-              </tr>
-              <tr>
-                <td data-label="Concept">concept</td>
-                <td data-label="Currency">currency</td>
-                <td data-label="Amount">amount</td>
-                <td data-label="Date">date</td>
-              </tr>
-            </tbody>
-          </table>
+          <h2>{expensesData.length ? 'Expenses history' : 'There are not expenses'}</h2>
+          {
+            expensesData.length
+
+              ?
+              <div className={styled.table}>
+              <table  >
+                <thead>
+                  <tr>
+                    <th className={ styled.textTable } scope="col">Concept</th>
+                    <th  className={ styled.textTable } scope="col">Currency</th>
+                    <th  className={ styled.textTable }  scope="col">Amount</th>
+                    <th  className={ styled.textTable } scope="col">Date</th>
+                    <th   className={ styled.textTable } scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    expensesData?.map((el, index) => (
+                      <tr key={index}>
+                        <td className={ styled.label } data-label="Concept">{el.concept}</td>
+                        <td className={ styled.label } data-label="Currency">{el.currency}</td>
+                        <td className={ styled.label } data-label="Amount"> { currencies[el.currency] }{el.amount}</td>
+                        <td className={ styled.label } data-label="Date">{el.date}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+              </div>
+              :
+              null
+          }
         </div>
       </div>
     </Layout>

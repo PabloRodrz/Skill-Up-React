@@ -151,7 +151,7 @@ const Register = () => {
               Already registered?{' '}
               <Link className={styled.loginLink} to={'/'}>
                 {' '}
-                <b>Log in</b>
+                <b>Login</b>
               </Link>
             </span>
           </div>

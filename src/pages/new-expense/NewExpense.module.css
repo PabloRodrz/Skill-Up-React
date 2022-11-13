@@ -27,11 +27,27 @@
   align-items: center;
 }
 
-.inputContainer > form {
+.table {
+  overflow-y: auto;
+  height: 500px;
+  
+}
+
+.textTable{
+  padding: 20px;
+  
+}
+
+.label {
+  text-align: center;
+}
+
+
+.inputContainer>form {
   width: 50%;
 }
 
-.inputDiv > input,
+.inputDiv>input,
 select,
 input[type='date'] {
   width: 100%;
@@ -42,7 +58,7 @@ input[type='date'] {
   padding-left: 10px;
 }
 
-.inputDiv > input {
+.inputDiv>input {
   background-color: #f2f2f2;
   border: none;
   height: 2rem;
@@ -50,12 +66,12 @@ input[type='date'] {
   box-sizing: border-box;
 }
 
-.inputDiv > label {
+.inputDiv>label {
   font-size: 25px;
   margin-bottom: 5px;
 }
 
-.inputDiv > select {
+.inputDiv>select {
   border: none;
   height: 2.13rem;
   width: 100%;
@@ -93,7 +109,7 @@ input[type='date'] {
   width: 60%;
 }
 
-.resumeContainer > b {
+.resumeContainer>b {
   font-size: 12px;
   margin-bottom: 5px;
 }

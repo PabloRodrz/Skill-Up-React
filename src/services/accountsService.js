@@ -14,21 +14,21 @@ export const CreateAccount = ({ createdAt, id, token }) => {
           store.dispatch(saveUserAccount(res.data))
         })
         .catch(err => {
-          if (err.status === 401) {
+          if (err.response.status === 401) {
             Swal.fire(
               'Oops!',
               'You are unauthorized',
               'error'
             );
           }
-          if (err.status === 403) {
+          if (err.response.status === 403) {
             Swal.fire(
               'Oops!',
               'Forbidden access',
               'error'
             );
           }
-          if (err.status === 500) {
+          if (err.response.status === 500) {
             Swal.fire(
               'Oops!',
               'Internal server error. Try again later!',
@@ -51,28 +51,28 @@ export const addMoney = async (postData, accountId, token) => {
       Swal.fire('', 'Deposit done!', 'success');
     }
   })
-    .catch((e) => {
-      if (res.status === 400) {
+    .catch((err) => {
+      if (err.response.status === 400) {
         Swal.fire('Oops!', 'Not enough cash :(', 'error');
       }
-      if (res.status === 401) {
+      if (err.response.status === 401) {
         Swal.fire(
           'Oops!',
           'You are unauthorized to do this transaction',
           'error'
         );
       }
-      if (res.status === 403) {
+      if (err.response.status === 403) {
         Swal.fire(
           'Oops!',
           'Source account or destination account blocked',
           'error'
         );
       }
-      if (res.status === 404) {
+      if (err.response.status === 404) {
         Swal.fire('Oops!', 'The account was not found', 'error');
       }
-      if (res.status === 500) {
+      if (err.response.status === 500) {
         Swal.fire(
           'Oops!',
           'Internal server error. Try again later!',
@@ -100,7 +100,7 @@ export const modifyAccount = ({ toAccountId, amountToTransfer }) => {
   const user = store?.getState()?.auth?.user
   const creationDate = user?.createdAt
   const token = store.getState()?.auth?.token
-  const accountId = store.getState()?.accounts?.userAccount[0]?.id
+  const accountId = store.getState()?.accounts?.userAccount[0]?.id ? store.getState()?.accounts?.userAccount[0]?.id  : store.getState()?.accounts?.userAccount?.id 
   const destinationAccount = toAccountId ? toAccountId : accountId
   axios.put(`http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${destinationAccount}`, {
     creationDate,
@@ -116,27 +116,27 @@ export const modifyAccount = ({ toAccountId, amountToTransfer }) => {
         store.dispatch(saveUserAccount(res.data))
       })
         .catch(err => {
-          if (err.status === 400) {
+          if (err.response.status === 400) {
             Swal.fire('Oops!', 'Not enough cash :(', 'error');
           }
-          if (err.status === 401) {
+          if (err.response.status === 401) {
             Swal.fire(
               'Oops!',
               'You are unauthorized to do this transaction',
               'error'
             );
           }
-          if (err.status === 403) {
+          if (err.response.status === 403) {
             Swal.fire(
               'Oops!',
               'Source account or destination account blocked',
               'error'
             );
           }
-          if (err.status === 404) {
+          if (err.response.status === 404) {
             Swal.fire('Oops!', 'The account was not found', 'error');
           }
-          if (err.status === 500) {
+          if (err.response.status === 500) {
             Swal.fire(
               'Oops!',
               'Internal server error. Try again later!',
@@ -148,27 +148,27 @@ export const modifyAccount = ({ toAccountId, amountToTransfer }) => {
 
 
     .catch(err => {
-      if (err.status === 400) {
+      if (err.response.status === 400) {
         Swal.fire('Oops!', 'Not enough cash :(', 'error');
       }
-      if (err.status === 401) {
+      if (err.response.status === 401) {
         Swal.fire(
           'Oops!',
           'You are unauthorized to do this transaction',
           'error'
         );
       }
-      if (err.status === 403) {
+      if (err.response.status === 403) {
         Swal.fire(
           'Oops!',
           'Source account or destination account blocked',
           'error'
         );
       }
-      if (err.status === 404) {
+      if (err.response.status === 404) {
         Swal.fire('Oops!', 'The account was not found', 'error');
       }
-      if (err.status === 500) {
+      if (err.response.status === 500) {
         Swal.fire(
           'Oops!',
           'Internal server error. Try again later!',

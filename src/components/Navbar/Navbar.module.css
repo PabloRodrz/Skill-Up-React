@@ -72,17 +72,6 @@
   fill: var(--light-blue);
 }
 
-/* PREFERENCE SECTION */
-
-.preferenceContainer {
-  margin-bottom: 5vh;
-  margin-left: 36px;
-}
-
-.preferenceContainer span {
-  font-weight: bold;
-  text-transform: uppercase;
-}
 
 /* USER SECTION */
 
@@ -92,7 +81,7 @@
   margin-top: 20px;
   margin-left: 36px;
   max-width: 214px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .userContainer > div {

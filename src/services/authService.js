@@ -10,10 +10,13 @@ export const LogIn = async ({ email, password }) => {
     { email, password }
   )
     .catch(err => {
-      Swal.fire({
-        icon: 'error',
-        text: err?.response?.data?.error,
-      })
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
     })
 
   const token = res?.data?.accessToken
@@ -26,10 +29,13 @@ export const LogIn = async ({ email, password }) => {
     }
   )
     .catch(err => {
-      Swal.fire({
-        icon: 'error',
-        text: err?.response?.data?.error,
-      })
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
     })
 
   if (secondRes) {
@@ -44,6 +50,11 @@ export const LogIn = async ({ email, password }) => {
       text: 'Login successful',
     });
 
+    const { lsUser } = JSON.parse(localStorage?.getItem('expenses')) ?? []
+    if (lsUser?.id !== id) {
+      localStorage.removeItem('expenses')
+    }
+
     return true
   }
 
@@ -57,10 +68,27 @@ export const SignIn = async (userData) => {
     userData
   )
     .catch(err => {
-      Swal.fire({
-        icon: 'error',
-        text: err?.response?.data?.error,
-      })
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
+      if (err.response.status === 403) {
+        Swal.fire(
+          'Oops!',
+          'Forbidden access',
+          'error'
+        );
+      }
+      if (err.response.status === 500) {
+        Swal.fire(
+          'Oops!',
+          'Internal server error. Try again later!',
+          'error'
+        );
+      }
     })
 
   if (res?.data) {
@@ -77,7 +105,7 @@ export const SignIn = async (userData) => {
 export const LogOut = () => {
   store.dispatch(Reset())
   store.dispatch(cleanTransactions())
-  localStorage.clear()
+  localStorage.removeItem('alkybank_state')
   Swal.fire({
     icon: 'success',
     text: 'Logout successful',
