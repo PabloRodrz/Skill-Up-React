@@ -5,7 +5,6 @@ import DashboardIcon from '../../assets/icons/DashboardIcon';
 import Logo from '../../assets/icons/Logo';
 import LogOutIcon from '../../assets/icons/LogOutIcon';
 import NewExpense from '../../assets/icons/NewExpense';
-import NightModeIcon from '../../assets/icons/NightModeIcon';
 import SendMoney from '../../assets/icons/SendMoney';
 import TransactionsIcon from '../../assets/icons/TransactionsIcon';
 import { LogOut } from '../../services/authService';
