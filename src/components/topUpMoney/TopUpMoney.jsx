@@ -8,8 +8,8 @@ import styled from './TopUpMoney.module.css';
 
 const TopUpMoney = () => {
   const { user, token } = useSelector(state => state.auth)
-  const accountId = useSelector(state => state.accounts.userAccount[0].id)
-  const money = useSelector(state => state.accounts.userAccount[0].money)
+  const accountId = useSelector(state => state.accounts?.userAccount[0]?.id ? state.accounts?.userAccount[0]?.id : state.accounts.userAccount.id)
+  const money = useSelector(state => state.accounts?.userAccount[0]?.money ? state.accounts?.userAccount[0]?.money : state.accounts.userAccount.money)
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.accounts.loading);
   const [addMoneyPost, setAddMoneyPost] = useState({
@@ -42,12 +42,9 @@ const TopUpMoney = () => {
   };
   const currencies = {ARS: "$", USD: "$", EUR: "€"}
 
-  //falta setear el skeleton para el loading
   return (
     <Layout page="Add money">
-      {isLoading ? (
-        <h1>loading..</h1>
-      ) : (
+
         <div className={styled.container}>
           <div className={styled.inputContainer}>
             <form>
@@ -58,7 +55,7 @@ const TopUpMoney = () => {
                     <option hidden value="">
                       Choose a concept
                     </option>
-                    <option value="others">Others</option>
+                    <option value="others">Top up</option>
                   </select>
                 </div>
                 <div className={styled.inputDiv}>
@@ -91,10 +88,9 @@ const TopUpMoney = () => {
                 </div>
 
                 <div className="btn">
-                  {/*  <button onClick={handleOnClick}>ADD</button> */}
                   <Button
                     action={handleOnClick}
-                    text="ADD"
+                    text={isLoading ? "processing" : "ADD"}
                     variant="primary"
                     options={{ uppercase: true }}
                   />
@@ -121,7 +117,6 @@ const TopUpMoney = () => {
             )}
           </div>
         </div>
-      )}
     </Layout>
   );
 };

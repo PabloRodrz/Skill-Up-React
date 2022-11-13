@@ -47,15 +47,6 @@ const Navbar = () => {
           </div>
         </div>
         <div>
-          <div className={styled.preferenceContainer}>
-            <span>Preferences</span>
-            <div className={styled.sectionsContainer}>
-              <div className={styled.sections}>
-                <NightModeIcon className={styled.hoverIcon} />
-                <p>Dark Mode</p>
-              </div>
-            </div>
-          </div>
           <div className={styled.userContainer}>
             <div className={styled.userDetail}>
               <span

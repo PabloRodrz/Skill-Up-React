@@ -8,7 +8,7 @@ import AuxComponent from '../Transactions/AuxComponent';
 import styles from './dashboard.module.css';
 
 const Dashboard = () => {
-  const USER = useSelector(state => state.accounts.userAccount[0])
+  const USER = useSelector(state => state.accounts.userAccount[0] ? state.accounts.userAccount[0] : state.accounts.userAccount )
   const { totalExpending, expenses, moneyTransferred } = useSelector(state => state.transactions)
 
   const MoneyFormatter = (value) =>

@@ -10,10 +10,13 @@ export const LogIn = async ({ email, password }) => {
     { email, password }
   )
     .catch(err => {
-      Swal.fire({
-        icon: 'error',
-        text: err?.response?.data?.error,
-      })
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
     })
 
   const token = res?.data?.accessToken
@@ -26,10 +29,13 @@ export const LogIn = async ({ email, password }) => {
     }
   )
     .catch(err => {
-      Swal.fire({
-        icon: 'error',
-        text: err?.response?.data?.error,
-      })
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
     })
 
   if (secondRes) {
@@ -62,10 +68,27 @@ export const SignIn = async (userData) => {
     userData
   )
     .catch(err => {
-      Swal.fire({
-        icon: 'error',
-        text: err?.response?.data?.error,
-      })
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
+      if (err.response.status === 403) {
+        Swal.fire(
+          'Oops!',
+          'Forbidden access',
+          'error'
+        );
+      }
+      if (err.response.status === 500) {
+        Swal.fire(
+          'Oops!',
+          'Internal server error. Try again later!',
+          'error'
+        );
+      }
     })
 
   if (res?.data) {

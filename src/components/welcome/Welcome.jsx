@@ -2,7 +2,6 @@ import LogoLoginIcon from '../../assets/icons/LogoLoginIcon'
 import styled from './Welcome.module.css'
 const Welcome = () => {
   return (
-    //flex column en login y welcome
     <div className={ styled.welcomeContainer }>
       <div className={ styled.container }> 
         <div className={ styled.logo }><LogoLoginIcon /></div>

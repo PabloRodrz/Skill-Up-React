@@ -53,8 +53,8 @@ const NewExpense = () => {
       return;
     } else {
       handleLocalStorage()
+      Swal.fire('', 'Expense added!', 'success')
     }
-    // reset();
   };
 
   const currencies = {ARS: "$", USD: "$", EUR: "€"}

@@ -18,8 +18,21 @@ export async function ReadTransactions() {
       }
     })
     .catch(err => {
-      console.log(err.message),
-        store.dispatch(changeStatus({ success: false, error: true, loading: false }))
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
+      if (err.response.status === 403) {
+        Swal.fire(
+          'Oops!',
+          'Forbidden access',
+          'error'
+        );
+      }
+      store.dispatch(changeStatus({ success: false, error: true, loading: false }))
     })
 
   const storageExpenses = JSON.parse(localStorage.getItem('expenses'))
@@ -54,8 +67,21 @@ export function NavTransactions(pagePath) {
       SearchSenderUser(res.data)
     })
     .catch(err => {
-      console.log(err.message),
-        store.dispatch(changeStatus({ success: false, error: true, loading: false }))
+      if (err.response.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
+      if (err.response.status === 403) {
+        Swal.fire(
+          'Oops!',
+          'Forbidden access',
+          'error'
+        );
+      }
+      store.dispatch(changeStatus({ success: false, error: true, loading: false }))
     })
 }
 
@@ -63,7 +89,22 @@ async function SearchSenderUser({ nextPage, previousPage, data }) {
   let transactions = []
 
   for (const d of data) {
-    const user = await axios.get(`${api.url}${api.users}/${d.userId}`).catch(error => console.log(error))
+    const user = await axios.get(`${api.url}${api.users}/${d.userId}`).catch(err => {
+      if (err.status === 401) {
+        Swal.fire(
+          'Oops!',
+          'You are unauthorized',
+          'error'
+        );
+      }
+      if (err.status === 403) {
+        Swal.fire(
+          'Oops!',
+          'Forbidden access',
+          'error'
+        );
+      }
+    })
     const { id, first_name, last_name, email, points, roleId } = user?.data
 
     transactions.push({ ...d, sender_user: { id, first_name, last_name, email, points, roleId } })
@@ -76,7 +117,7 @@ async function SearchSenderUser({ nextPage, previousPage, data }) {
 export const transferMoney = async ({ concept, CBU, amount, token }) => {
   store.dispatch(handleTransferMoney({ sendMoneySuccess: false, sendMoneyError: false, sendMoneyLoading: true }))
   const type = "payment"
-  const currentAmount = store.getState()?.accounts?.userAccount[0]?.money
+  const currentAmount = store.getState()?.accounts?.userAccount[0]?.money ? store.getState()?.accounts?.userAccount[0]?.money : store.getState()?.accounts?.userAccount?.money
 
   // Se agrega el dinero a otra cuenta
   await axios.post(`http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${CBU}`,
