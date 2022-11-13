@@ -21,14 +21,17 @@ export async function ReadTransactions() {
       console.log(err.message),
         store.dispatch(changeStatus({ success: false, error: true, loading: false }))
     })
+
+  const accountData = store.getState()?.accounts?.userAccount[0]
+
   for (const d of res.data.data) {
-    if (d.userId === USER.id && d.type === 'payment') {
+    if (d.userId === USER.id && d.type === 'payment' && d.accountId === accountData.id) {
       auxExpense += parseInt(d.amount)
     }
 
-    // if (d.userId === USER.id && d.type === 'topup') {
-    //    auxMoneyTransf += parseInt(d.amount)
-    // }
+    if (d.userId === USER.id && d.type === 'payment') {
+      auxMoneyTransf += parseInt(d.amount)
+    }
   }
 
   store.dispatch(changeExpenses({
