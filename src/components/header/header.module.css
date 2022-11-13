@@ -1,0 +1,14 @@
+.container {
+  background-color: aqua;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}

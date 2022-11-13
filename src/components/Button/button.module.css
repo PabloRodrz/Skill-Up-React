@@ -1,0 +1,43 @@
+.buttonPrimary,
+.buttonSecondary {
+  color: var(--light-mode-el);
+  text-transform: lowercase;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.5s ease;
+  -webkit-text-stroke: 0.3px transparent;
+}
+
+.buttonPrimary::first-letter,
+.buttonSecondary::first-letter {
+  text-transform: uppercase;
+}
+
+.buttonPrimary:hover {
+  background-color: #6bc2eec0;
+}
+
+.buttonSecondary:hover {
+  background-color: var(--secondary-btn-color-hover);
+}
+
+.buttonPrimary {
+  background-color: var(--primary-btn-color);
+}
+
+.buttonSecondary {
+  background-color: var(--secondary-btn-color);
+}
+
+.buttonUppercase {
+  text-transform: uppercase;
+}
+
+.buttonLowercase::first-letter {
+  text-transform: lowercase;
+}

@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+// Components
+import Error404 from './components/error404/Error404';
+import Footer from './components/footer/Footer';
 
-const App = () => {
-  const [count, setCount] = useState(0)
+// Pages
+import Dashboard from './pages/Dashboard';
+import LoginPage from './pages/login/LoginPage';
+import RegisterPage from './pages/register/RegisterPage';
+import SendMoney from './pages/send-money/SendMoney';
+import TopUpMoneyPage from './pages/topUpMoney/TopUpMoneyPage';
+import Transactions from './pages/Transactions';
+
+// Libraries
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import NewExpense from './pages/new-expense/NewExpense';
+
+function App() {
+  const TOKEN = useSelector((state) => state.auth.token);
+  const USER = useSelector((state) => state.auth.user);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel='noreferrer'>
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel='noreferrer'>
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      {TOKEN && USER ? (
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/sendmoney" element={<SendMoney />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/addmoney" element={<TopUpMoneyPage />} />
+          <Route path="/newexpense" element={<NewExpense />} />
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
+        </Routes>
+      )}
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

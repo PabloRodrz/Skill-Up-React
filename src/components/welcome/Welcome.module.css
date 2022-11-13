@@ -1,0 +1,46 @@
+.welcome {
+  text-align: justify;
+}
+
+.container > h1 {
+  padding: 0;
+  position: relative;
+  margin-bottom: 0px;
+  margin-top: 0rem;
+}
+
+.logo {
+  margin-bottom: 1.5rem;
+}
+
+.welcomeTitle {
+  font-weight: 500;
+  font-size: 2em;
+}
+
+.welcomeTitleAlkybank {
+  font-size: 40px;
+}
+
+.welcomeContainer {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcomeSpan {
+  margin-top: 2rem;
+}
+
+@media (max-width: 500px) {
+  .welcomeContainer {
+    height: 120px;
+    margin-top: 70px;
+  }
+
+  .welcomeSpan {
+    margin: 0;
+    text-align: center;
+  }
+}

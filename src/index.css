@@ -1,21 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
 :root {
-  font-family: 'DM Sans', sans-serif;
   --main-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
   --dark-mode-bg: hsla(0, 0%, 9%, 1);
   --dark-mode-el: hsla(0, 0%, 5%, 1);
   --dark-mode-text: white;
-  --light-mode-bg: #F6F6F6;
+  --light-mode-bg: #f6f6f6;
   --light-mode-el: white;
   --light-mode-text: black;
-  --light-blue: #58C1F5;
+  --light-blue: #58c1f5;
+  --primary-btn-color: #58c1f5;
+  --primary-btn-color-hover: #c6edfc;
+  --secondary-btn-color: #161616;
+  --secondary-btn-color-hover: #252525;
+  --dark-gray: #252525;
+  --dark-blue: #374151;
+  --card-dark-gray: #292929;
+  --card-light-gray: #2c2c2c;
+  --icon-gray: #7a7a7a;
+  --white: #ffffff;
+  --light-pink: #f2f2f2;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+
+* {
+  font-family: 'DM Sans', sans-serif;
+}
+
+#root {
+  height: 100vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

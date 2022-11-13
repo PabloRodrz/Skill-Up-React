@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.inputContainer {
+  width: 60%;
+  height: 100%;
+  background-color: var(--light-mode-el);
+  box-shadow: var(--main-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resumeContainer {
+  width: 38%;
+  height: 100%;
+  background-color: var(--dark-blue);
+  box-shadow: var(--main-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.inputContainer > form {
+  width: 50%;
+}
+
+.inputDiv > input,
+select {
+  width: 100%;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding-left: 10px;
+}
+
+.inputDiv > input {
+  background-color: #f2f2f2;
+  border: none;
+  height: 2rem;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.inputDiv > label {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.inputDiv > select {
+  border: none;
+  height: 2.13rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+
+.formInputs {
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.inputDiv {
+  margin-bottom: 1.5rem;
+}
+
+.email {
+  font-size: 18px;
+  margin: 30px 0px 20px 0px;
+}
+
+.concept {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.amount {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.resume {
+  text-align: center;
+  width: 60%;
+}
