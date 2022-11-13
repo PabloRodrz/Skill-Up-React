@@ -90,7 +90,7 @@ export const transferMoney = async ({ concept, CBU, amount, token }) => {
       }
 
       // Se modifica el dinero que está en la cuenta del usuario logueado
-      modifyAccount({ toAccountId: CBU, amountToTransfer: currentAmount - amount })
+      modifyAccount({ toAccountId: CBU, amountToTransfer: parseInt(currentAmount) - parseInt(amount) })
     })
 
 

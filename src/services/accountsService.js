@@ -102,7 +102,6 @@ export const modifyAccount = ({ toAccountId, amountToTransfer }) => {
   const token = store.getState()?.auth?.token
   const accountId = store.getState()?.accounts?.userAccount[0]?.id
   const destinationAccount = toAccountId ? toAccountId : accountId
-
   axios.put(`http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${destinationAccount}`, {
     creationDate,
     money: parseInt(amountToTransfer),

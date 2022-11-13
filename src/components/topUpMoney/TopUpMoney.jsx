@@ -37,7 +37,7 @@ const TopUpMoney = () => {
       addMoneyPost.currency !== ''
     ) {
       dispatch(addMoneyPostAPI(objectForPostAPI));
-      modifyAccount({ amountToTransfer: addMoneyPost.amount + money })
+      modifyAccount({ amountToTransfer: parseInt(addMoneyPost.amount) + parseInt(money) })
     }
   };
 
