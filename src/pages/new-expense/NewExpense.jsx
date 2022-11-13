@@ -5,7 +5,7 @@ import Layout from '../../components/Layout/Layout';
 import styled from './NewExpense.module.css';
 
 const NewExpense = () => {
-  const [expensesStorage, setExpensesStorage] = useState();
+  const [expensesStorage, setExpensesStorage] = useState([])
   const [newExpense, setNewExpense] = useState({
     concept: '',
     date: '',
@@ -13,6 +13,18 @@ const NewExpense = () => {
     currency: '',
   });
 
+  const handleLocalStorage = () => {
+    const expenses = localStorage?.getItem('expenses')
+    if (expenses !== null) {
+      setExpensesStorage([...expenses, newExpense])
+    }
+
+    if (expensesStorage.length > 0) {
+      localStorage.setItem('expenses', JSON.stringify(expensesStorage))
+    } else {
+      localStorage.setItem('expenses', JSON.stringify(newExpense))
+    }
+  }
   const handleChange = (e) => {
     setNewExpense((prevExpenses) => ({
       ...prevExpenses,
@@ -22,8 +34,6 @@ const NewExpense = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    expensesStorage.push(newExpense);
-    console.log(expensesStorage);
     if (
       newExpense.concept === '' ||
       newExpense.date === '' ||
@@ -36,8 +46,10 @@ const NewExpense = () => {
         icon: 'warning',
       });
       return;
+    } else {
+      handleLocalStorage()
     }
-    reset();
+    // reset();
   };
   return (
     <Layout page="Expenses">
@@ -55,6 +67,7 @@ const NewExpense = () => {
                   <option hidden value="default">
                     Choose a concept
                   </option>
+                  <option hidden value="">Choose a concept</option>
                   <option value="Payment">Payment</option>
                   <option value="Transfer">Transfer</option>
                   <option value="Food">Food</option>
