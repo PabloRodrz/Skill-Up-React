@@ -22,13 +22,12 @@ export async function ReadTransactions() {
         store.dispatch(changeStatus({ success: false, error: true, loading: false }))
     })
 
-  const accountData = store.getState()?.accounts?.userAccount[0]
+  const storageExpenses = JSON.parse(localStorage.getItem('expenses'))
+  storageExpenses?.data?.forEach(expense => {
+    auxExpense += parseInt(expense.amount)
+  })
 
   for (const d of res.data.data) {
-    if (d.userId === USER.id && d.type === 'payment' && d.accountId === accountData.id) {
-      auxExpense += parseInt(d.amount)
-    }
-
     if (d.userId === USER.id && d.type === 'payment') {
       auxMoneyTransf += parseInt(d.amount)
     }
