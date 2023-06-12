@@ -3,7 +3,7 @@ import Error404 from './components/error404/Error404';
 import Footer from './components/footer/Footer';
 
 // Pages
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/index.js';
 import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import SendMoney from './pages/send-money/SendMoney';
